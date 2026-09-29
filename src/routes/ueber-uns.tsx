@@ -7,7 +7,7 @@ import workAsset from "@/assets/reza-nahad-elektroarbeit.jpeg.asset.json";
 
 export const Route = createFileRoute("/ueber-uns")({
   head: () => ({
-    ...seo("/ueber-uns", "Über uns – Elektrotechnikermeister Reza Nahad | Nahad", "Lernen Sie Reza Nahad kennen: Elektrotechnikermeister in Düsseldorf-Mörsenbroich, Meisterbetrieb in der Handwerksrolle, Innungsbetrieb, eingetragen bei der Netzgesellschaft Düsseldorf."),
+    ...seo("/ueber-uns", "Über uns – Elektrotechnikermeister Reza Nahad | Nahad", "Lernen Sie Reza Nahad kennen: Elektrotechnikermeister in Düsseldorf-Mörsenbroich, Meisterbetrieb in der Handwerksrolle und eingetragen bei der Netzgesellschaft Düsseldorf."),
     scripts: [jsonLd({ "@type": "Person", name: "Reza Nahad", jobTitle: "Elektrotechnikermeister", worksFor: { "@type": "Electrician", name: "Nahad Energie Elektrotechnik" } })],
   }),
   component: Page,
@@ -43,7 +43,6 @@ function Page() {
                 "Elektrotechnikermeister seit 2024",
                 "Eingetragen in die Handwerksrolle der Handwerkskammer Düsseldorf, Elektrotechniker-Handwerk – Betriebsnummer 1887466",
                 "Eingetragener Installateur im Installateurverzeichnis der Netzgesellschaft Düsseldorf mbH – Voraussetzung für Zählerarbeiten, PV-Inbetriebsetzung und § 14a-Anmeldungen",
-                "Mitglied der Elektro-Innung Düsseldorf – berechtigt, den E-CHECK anzubieten",
               ].map((t) => <li key={t} className="flex gap-3 font-semibold"><ShieldCheck className="mt-0.5 size-5 shrink-0 text-success" aria-hidden="true" />{t}</li>)}
             </ul>
             <p className="mt-4 text-sm text-muted-foreground">Wir zeigen nur Qualifikationen, die wir belegen können. Zertifikate legen wir auf Wunsch vor.</p>

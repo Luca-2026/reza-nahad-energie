@@ -160,7 +160,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
         <div className="border-t border-primary-foreground/15">
           <ul aria-label="Qualifikationen" className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-5 md:px-6">
-            {["Elektrotechnik-Meisterbetrieb seit 2024", "Mitglied der Elektro-Innung · E-CHECK", "Installateurverzeichnis Netzgesellschaft Düsseldorf"].map((b) => <li key={b} className="rounded-md border border-primary-foreground/25 px-3 py-1 text-xs font-semibold">{b}</li>)}
+            {["Elektrotechnik-Meisterbetrieb seit 2024", "Installateurverzeichnis Netzgesellschaft Düsseldorf"].map((b) => <li key={b} className="rounded-md border border-primary-foreground/25 px-3 py-1 text-xs font-semibold">{b}</li>)}
           </ul>
           <div className="mx-auto max-w-6xl px-4 pb-6 text-xs text-primary-foreground/70 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister</div>
         </div>

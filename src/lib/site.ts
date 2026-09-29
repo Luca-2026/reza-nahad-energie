@@ -386,7 +386,7 @@ export const services: Service[] = [
     slug: "e-check", name: "E-CHECK – Prüfung elektrischer Anlagen", icon: "ClipboardCheck", group: "installation",
     short: "Sicherheit mit Protokoll für Eigentümer, Vermieter und Käufer.",
     title: "E-CHECK Düsseldorf – Prüfung elektrischer Anlagen | Nahad",
-    description: "E-CHECK vom Innungsbetrieb in Düsseldorf: Prüfung der Elektroanlage nach DIN VDE mit Protokoll und Plakette – für Eigentümer, Vermieter und Käufer.",
+    description: "Prüfung elektrischer Anlagen in Düsseldorf nach DIN VDE mit Protokoll – für Eigentümer, Vermieter und Käufer.",
     h1: "Prüfung elektrischer Anlagen in Düsseldorf – Sicherheit mit Protokoll",
     intro: "Elektrische Anlagen altern unsichtbar: Klemmen lockern sich, Isolierungen werden brüchig, Schutzschalter lösen nicht mehr sicher aus. Unser E-CHECK prüft Ihre Anlage nach DIN VDE 0105-100 und DIN VDE 0100-600 – mit Messungen, Sichtprüfung und einem Protokoll, das Mängel nach Dringlichkeit ordnet. Für Eigentümer, Vermieter, Käufer und Verkäufer in Düsseldorf.",
     occasions: [
@@ -428,7 +428,7 @@ export const services: Service[] = [
       ["Ist der E-CHECK für Vermieter Pflicht?", "Nein, eine gesetzliche Prüfpflicht gibt es nicht (BGH VIII ZR 321/07). Vermieter haften aber für erkennbare Gefahren; eine dokumentierte Prüfung alle vier Jahre oder bei Mieterwechsel ist die anerkannte Vorgehensweise."],
       ["Wie lange dauert die Prüfung?", "Wohnung 1,5–2 Stunden, Einfamilienhaus 2–3 Stunden. Der Strom ist für einzelne Messungen kurz abgeschaltet."],
       ["Was passiert, wenn Mängel gefunden werden?", "Sie erhalten eine Liste mit Priorität und Kostenschätzung. Gefährliche Mängel (z. B. fehlender Schutzleiter an einer Steckdose) sichern wir sofort ab, wenn Sie das wünschen. Der Auftrag zur Behebung ist freiwillig."],
-      ["Wer darf einen E-CHECK machen?", "Nur Elektrofachbetriebe. Die Bezeichnung „E-CHECK“ mit Plakette ist Innungsbetrieben vorbehalten – wir sind Mitglied der Elektro-Innung. Die Prüfung nach DIN VDE 0105-100 darf jeder Elektro-Meisterbetrieb durchführen."],
+      ["Wer darf elektrische Anlagen prüfen?", "Die Prüfung nach DIN VDE 0105-100 wird von einem Elektrofachbetrieb durchgeführt."],
     ],
     related: ["dguv-v3-pruefung", "zaehlerschrank-sicherungskasten", "elektroinstallation"],
   },
