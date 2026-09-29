@@ -8,3 +8,4 @@
 - [x] Mobil- und Desktopdarstellung aller öffentlichen Seiten prüfen
 - [ ] STRATO-FTP-Paket neu erzeugen und kontrollieren — wartet auf den finalen Produktions-Build nach Abschluss dieser Änderungen
 - [x] Rechtstexte aus den beiden Word-Dateien vollständig und wortgetreu einfügen
+- [x] Cookie-Auswahl websiteweit ergänzen, WhatsApp entfernen und Datenschutz aktualisieren

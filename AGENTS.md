@@ -17,3 +17,4 @@
 - No server functions or server-only loaders: the live site has no Node server; the contact form posts to public/api/contact.php (PHP on STRATO), mocked in the preview via src/lib/contactApi.ts.
 - scripts/package-strato.py builds the FTP ZIP and copies Lovable Asset images into it under their original /__l5e/ paths.
 - Responsive page hierarchy is centralized in SiteLayout and semantic CSS utilities; this keeps all static routes visually consistent on mobile and desktop.
+- Cookie choice is stored only in the first-party `nahad_cookie_consent` cookie; no analytics or marketing scripts are loaded.

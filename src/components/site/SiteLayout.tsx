@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import logoAsset from "@/assets/nahad-energie-logo.png.asset.json";
 import { areaServed, email, phoneDisplay, phoneHref, prices, services, standDate, type QA } from "@/lib/site";
+import { CookieConsent, openCookieSettings } from "./CookieConsent";
 
 const nav = [
   { to: "/notdienst", label: "Notdienst" },
@@ -139,7 +140,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div><h2 className="text-sm font-extrabold text-accent">Leistungen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{services.map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className={footerLink}>{s.name}</Link></li>)}<li><Link to="/notdienst" className={footerLink}>Notdienst</Link></li></ul></div>
           <div><h2 className="text-sm font-extrabold text-accent">Einsatzgebiet</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{areaServed.map((a) => <li key={a}><Link to="/einsatzgebiet" className={footerLink}>Elektriker {a}</Link></li>)}</ul></div>
           <div><h2 className="text-sm font-extrabold text-accent">Rechtliches & mehr</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">
-             <li><Link to="/impressum" className={footerLink}>Impressum</Link></li><li><Link to="/datenschutz" className={footerLink}>Datenschutz</Link></li><li><Link to="/agb" className={footerLink}>AGB</Link></li><li><Link to="/widerrufsbelehrung" className={footerLink}>Widerrufsbelehrung</Link></li><li><Link to="/karriere" className={footerLink}>Karriere</Link></li><li><Link to="/faq" className={footerLink}>Häufige Fragen</Link></li>
+             <li><Link to="/impressum" className={footerLink}>Impressum</Link></li><li><Link to="/datenschutz" className={footerLink}>Datenschutz</Link></li><li><Link to="/agb" className={footerLink}>AGB</Link></li><li><Link to="/widerrufsbelehrung" className={footerLink}>Widerrufsbelehrung</Link></li><li><Button type="button" variant="ghost" onClick={openCookieSettings} className="h-auto min-h-0 justify-start p-0 text-sm font-normal text-primary-foreground/80 hover:bg-transparent hover:text-primary-foreground">Cookie-Einstellungen</Button></li><li><Link to="/karriere" className={footerLink}>Karriere</Link></li><li><Link to="/faq" className={footerLink}>Häufige Fragen</Link></li>
           </ul></div>
         </div>
         <div className="border-t border-primary-foreground/15">
@@ -153,6 +154,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <a href={phoneHref} className="flex min-h-16 flex-col items-center justify-center gap-1 text-xs font-bold text-primary"><Phone className="size-5" aria-hidden="true" />Anrufen</a>
         <Link to="/kontakt" className="flex min-h-16 flex-col items-center justify-center gap-1 bg-accent text-xs font-bold text-accent-foreground"><ArrowRight className="size-5" aria-hidden="true" />Anfrage</Link>
       </nav>}
+      <CookieConsent />
     </>
   );
 }
