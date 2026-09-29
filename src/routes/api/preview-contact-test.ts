@@ -8,7 +8,7 @@ const schema = z.object({
   email: z.string().trim().email().max(255),
   phone: z.string().trim().min(1).max(30),
   service: z.string().trim().min(1).max(100),
-  message: z.string().trim().min(1).max(3000),
+  message: z.string().trim().min(1).max(5000),
   location: z.string().trim().max(60).optional(),
   callback: z.string().trim().max(60).optional(),
   website: z.string().optional(),

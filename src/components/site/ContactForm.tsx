@@ -3,7 +3,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { z } from "zod";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { ContactError, getContactToken, sendContact } from "@/lib/contactApi";
+import { ContactError, getContactToken, isPreviewTestMode, sendContact } from "@/lib/contactApi";
 import { phoneDisplay, phoneHref } from "@/lib/site";
 
 const serviceOptions = [
@@ -32,8 +32,11 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<Fields, string>>>({});
   const [formError, setFormError] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [testMode, setTestMode] = useState(false);
+  const [testTo, setTestTo] = useState("");
 
   useEffect(() => {
+    setTestMode(isPreviewTestMode());
     getContactToken().then(setToken).catch(() => setToken(""));
   }, []);
 
@@ -56,19 +59,31 @@ export function ContactForm() {
     try {
       let t = token;
       if (!t) t = await getContactToken();
-      await sendContact({ ...parsed.data, website: String(fd.get("website") ?? ""), token: t });
+      const res = await sendContact({ ...parsed.data, website: String(fd.get("website") ?? ""), token: t });
+      setTestTo(res.to ?? "");
       setStatus("sent");
     } catch (err) {
       setStatus("idle");
-      if (err instanceof ContactError && err.status === 429) setFormError("Sie haben in kurzer Zeit mehrere Anfragen gesendet. Bitte versuchen Sie es in einigen Minuten erneut oder rufen Sie uns an.");
+      if (testMode && err instanceof ContactError && err.code === "missing_key") setFormError("Testmodus: In der Vorschau ist noch kein Resend-API-Key hinterlegt (Secret RESEND_API_KEY).");
+      else if (testMode && err instanceof ContactError && err.code === "resend_failed") setFormError(`Testmodus: Resend hat den Versand abgelehnt (Status ${err.detail ? "– " + err.detail : ""}).`);
+      else if (err instanceof ContactError && err.status === 429) setFormError("Sie haben in kurzer Zeit mehrere Anfragen gesendet. Bitte versuchen Sie es in einigen Minuten erneut oder rufen Sie uns an.");
       else if (err instanceof ContactError && err.status === 422 && err.fields) setErrors(err.fields as Partial<Record<Fields, string>>);
       else setFormError(`Ihre Anfrage konnte leider nicht gesendet werden. Bitte rufen Sie uns an unter ${phoneDisplay} oder schreiben Sie eine E-Mail.`);
     }
   }
 
+  const testBanner = testMode ? (
+    <div role="note" className="mb-6 border-l-4 border-accent bg-secondary p-4 text-sm text-secondary-foreground">
+      <p className="font-bold text-primary">Testmodus – nur Lovable-Vorschau</p>
+      <p className="mt-1">Absenden verschickt eine mit „[TEST]“ markierte E-Mail über Resend (Key aus den Lovable-Einstellungen){testTo ? ` an ${testTo}` : ""}. Keine Kundenbestätigung.</p>
+      <p className="mt-1"><b>Livebetrieb (STRATO) ist getrennt:</b> dort versendet <code>api/contact.php</code> mit dem Key aus <code>api/config.php</code> auf dem Server. Dieser Hinweis erscheint auf nahad-energie.de nicht.</p>
+    </div>
+  ) : null;
+
   if (status === "sent") {
     return (
       <div role="status" className="border-l-4 border-success bg-secondary p-6 md:p-8">
+        {testBanner}
         <CheckCircle2 className="size-10 text-success" aria-hidden="true" />
         <h2 className="mt-4 text-2xl font-extrabold text-primary">Vielen Dank – Ihre Anfrage ist bei uns angekommen.</h2>
         <p className="mt-3 text-muted-foreground">Wir melden uns in der Regel innerhalb eines Werktags telefonisch oder per E-Mail. Bei Projekten vereinbaren wir einen Vor-Ort-Termin, danach erhalten Sie ein schriftliches Angebot.</p>
@@ -82,6 +97,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate className="relative border-t-2 border-accent bg-card pt-6 md:pt-8" aria-label="Anfrageformular">
+      {testBanner}
       <p className="eyebrow">Ihr Anliegen</p>
       <h2 className="mb-7 mt-2 text-2xl font-extrabold text-primary">Anfrage senden</h2>
       <div className="grid gap-5 sm:grid-cols-2">
