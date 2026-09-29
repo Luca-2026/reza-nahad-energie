@@ -250,7 +250,7 @@ export function PriceBox() {
          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3"><dt>Stundensatz Elektroniker</dt><dd className="shrink-0 font-extrabold text-primary">{prices.hourly}</dd></div>
          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3"><dt>Anfahrt Düsseldorf <span className="block text-xs text-muted-foreground">Umland nach Entfernung, wird vorher genannt</span></dt><dd className="shrink-0 font-extrabold text-primary">{prices.travel}</dd></div>
          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3"><dt>Störungsdienst außerhalb der Bürozeiten</dt><dd className="shrink-0 font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
-         <div className="grid gap-2 py-3 sm:grid-cols-[minmax(0,1fr)_auto]"><dt>Projekte (PV, Wallbox, Sanierung, Zählerschrank)</dt><dd className="max-w-xs font-semibold text-primary sm:text-right">Festpreis-Angebot nach Vor-Ort-Termin</dd></div>
+         <div className="grid gap-2 py-3 lg:grid-cols-[minmax(0,1fr)_auto]"><dt>Projekte (PV, Wallbox, Sanierung, Zählerschrank)</dt><dd className="max-w-xs font-semibold text-primary lg:text-right">Festpreis-Angebot nach Vor-Ort-Termin</dd></div>
       </dl>
       <p className="mt-3 text-xs text-muted-foreground">Alle Preise für Privatkunden inkl. 19 % MwSt. (Photovoltaik: 0 % MwSt.). Gewerbekunden erhalten Nettopreise im Angebot. Stand {standDate}.</p>
     </div>

@@ -26,7 +26,7 @@ function Page() {
       <Breadcrumbs items={[{ label: "Über uns" }]} />
       <PageHero eyebrow="Über uns" title="Über uns – Elektrotechnikermeister Reza Nahad und sein Team">Nahad Energie ist ein Elektrotechnik-Meisterbetrieb aus Düsseldorf-Mörsenbroich. Wir arbeiten für Privatkunden, Hausverwaltungen und Gewerbe in Düsseldorf und im Umkreis von etwa 25 Kilometern – mit einem Anspruch: Elektrik so zu bauen, dass sie geprüft, dokumentiert und in zwanzig Jahren noch nachvollziehbar ist.</PageHero>
       <Section>
-        <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="grid min-w-0 items-center gap-12 lg:grid-cols-2">
           <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad am Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" loading="lazy" className="aspect-[4/3] w-full rounded-md object-cover" />
           <div>
             <h2 className="text-2xl font-extrabold text-primary md:text-3xl">Reza Nahad, Elektrotechnikermeister</h2>
@@ -35,7 +35,7 @@ function Page() {
         </div>
       </Section>
       <Section muted>
-        <div className="grid items-center gap-12 md:grid-cols-[1.2fr_.8fr]">
+        <div className="grid min-w-0 items-center gap-12 lg:grid-cols-[1.2fr_.8fr]">
           <div>
             <h2 className="text-2xl font-extrabold text-primary md:text-3xl">Qualifikationen, die Sie prüfen können</h2>
             <ul className="mt-6 space-y-3">

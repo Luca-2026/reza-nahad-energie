@@ -120,14 +120,14 @@ function Index() {
       </Section>
 
       <Section>
-        <div className="grid items-center gap-10 md:grid-cols-2">
+        <div className="grid min-w-0 items-center gap-10 lg:grid-cols-2">
           <div><p className="eyebrow">Preistransparenz</p><h2 className="section-heading mt-3">Was kostet ein Elektriker in Düsseldorf?</h2><p className="mt-4 text-muted-foreground">Stundensatz, Anfahrt und Zuschläge stehen hier – vor dem Auftrag. Für Projekte erhalten Sie nach dem Vor-Ort-Termin ein schriftliches Festpreis-Angebot.</p></div>
           <PriceBox />
         </div>
       </Section>
 
       <Section muted>
-        <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="grid min-w-0 items-center gap-12 lg:grid-cols-2">
           <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad am Schreibtisch im Büro von Nahad Energie in Düsseldorf-Mörsenbroich" width="1366" height="768" loading="lazy" className="aspect-[4/3] w-full rounded-md object-cover" />
           <div>
             <p className="eyebrow">Persönlich geführt</p><h2 className="section-heading mt-3">Reza Nahad – Elektrotechnikermeister aus Düsseldorf</h2>

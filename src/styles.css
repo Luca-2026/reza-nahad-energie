@@ -165,6 +165,7 @@
     font-weight: 800;
     letter-spacing: 0;
     text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   p, li, dd { overflow-wrap: anywhere; }
