@@ -148,8 +148,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <address className="mt-3 space-y-2 not-italic text-sm text-primary-foreground/80">
               <p>Vogelsanger Weg 38<br />40470 Düsseldorf</p>
               <p><a href={phoneHref} className={footerLink}>Telefon {phoneDisplay}</a><br /><a href={`mailto:${email}`} className={footerLink}>{email}</a></p>
-              <p>Bürozeiten: werden ergänzt</p>
-              <p>Störungsdienst: werden ergänzt</p>
+              <p>Bürozeiten:<br />Montag–Freitag, 08:00–17:00 Uhr</p>
             </address>
           </div>
           <div><h2 className="text-sm font-extrabold text-accent">Leistungen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{services.map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className={footerLink}>{s.name}</Link></li>)}<li><Link to="/notdienst" className={footerLink}>Notdienst</Link></li></ul></div>
@@ -160,7 +159,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
         <div className="border-t border-primary-foreground/15">
           <ul aria-label="Qualifikationen" className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-5 md:px-6">
-            {["Elektrotechnik-Meisterbetrieb", "Handwerksrolle HWK Düsseldorf", "Installateurverzeichnis Netzgesellschaft Düsseldorf"].map((b) => <li key={b} className="rounded-md border border-primary-foreground/25 px-3 py-1 text-xs font-semibold">{b}</li>)}
+            {["Elektrotechnik-Meisterbetrieb seit 2024", "Mitglied der Elektro-Innung · E-CHECK", "Installateurverzeichnis Netzgesellschaft Düsseldorf"].map((b) => <li key={b} className="rounded-md border border-primary-foreground/25 px-3 py-1 text-xs font-semibold">{b}</li>)}
           </ul>
           <div className="mx-auto max-w-6xl px-4 pb-6 text-xs text-primary-foreground/70 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister</div>
         </div>

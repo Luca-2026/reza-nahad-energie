@@ -25,6 +25,7 @@ function Page() {
             <p className="flex items-start gap-3 text-sm"><MapPin className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />Vogelsanger Weg 38<br />40470 Düsseldorf (Mörsenbroich)</p>
             <a href={phoneHref} className="flex items-center gap-3 font-bold text-primary"><Phone className="size-5" aria-hidden="true" />Telefon & Störungsdienst: {phoneDisplay}</a>
             <a href={`mailto:${email}`} className="flex items-center gap-3 font-bold text-primary"><Mail className="size-5" aria-hidden="true" />{email}</a>
+            <p className="text-sm"><strong className="block text-primary">Bürozeiten</strong><span className="text-muted-foreground">Montag–Freitag, 08:00–17:00 Uhr</span></p>
             <a href={mapsHref} target="_blank" rel="noopener" className="flex items-center gap-3 text-sm font-semibold text-primary underline"><ExternalLink className="size-4" aria-hidden="true" />Route planen (Google Maps – externer Link)</a>
           </address>
         </div>

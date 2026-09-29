@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LegalHeading, LegalNote } from "@/components/site/LegalContent";
+import { LegalHeading } from "@/components/site/LegalContent";
 import { LegalPage } from "@/components/site/LegalPage";
 import { WithdrawalContent } from "@/components/site/WithdrawalContent";
 import { seo } from "@/lib/site";
@@ -89,12 +89,6 @@ export const Route = createFileRoute("/agb")({
   head: () => seo("/agb", "AGB | Nahad Energie Elektrotechnik", "Allgemeine Geschäftsbedingungen von Nahad Energie Elektrotechnik, Düsseldorf."),
   component: () => (
     <LegalPage title="Allgemeine Geschäftsbedingungen (AGB)">
-      <p><strong>Nahad Energie Elektrotechnik · Entwurf vom 29.09.2026</strong></p>
-      <LegalNote>
-        <p>Hinweis zur Verwendung: AGB gelten <strong>nur</strong>, wenn sie in den Vertrag einbezogen werden (§ 305 Abs. 2 BGB) – also durch Hinweis im Angebot bzw. Auftragsformular und Beifügung dieses Textes (bei Privatkunden auf Papier oder als PDF). Die Veröffentlichung auf der Website allein genügt nicht; Klauseln auf der Rechnung sind wirkungslos.</p>
-        <p className="mt-3">Bei Verträgen, die beim Kunden zu Hause oder auf der Baustelle geschlossen werden, haben Verbraucher ein 14-tägiges Widerrufsrecht. Die Widerrufsbelehrung und das Muster-Widerrufsformular (Seiten am Ende) gehören auf Papier zu jedem Verbraucher-Angebot; den Empfang quittieren lassen. Soll vor Ablauf der 14 Tage begonnen werden, zusätzlich das Formular „Verlangen des vorzeitigen Leistungsbeginns“ unterschreiben lassen – nicht vorangekreuzt. Ohne ordnungsgemäße Belehrung kann der Kunde nach EuGH (C-97/22) und BGH (VII ZR 133/24) auch nach fertiger Arbeit widerrufen und schuldet weder Werklohn noch Wertersatz.</p>
-        <p className="mt-3">Die AGB sind für Privatkunden (Verbraucher) formuliert; Regelungen nur für Unternehmer sind gekennzeichnet. Sorgfältig erstellter Entwurf nach der Rechtslage vom 28.09.2026, keine Rechtsberatung – vor Verwendung von der Rechtsberatung der Handwerkskammer Düsseldorf oder einem Fachanwalt prüfen lassen und die Widerrufsbelehrung mit dem amtlichen Muster (Anlage 1 und 2 zu Art. 246a EGBGB, gesetze-im-internet.de) Zeichen für Zeichen abgleichen.</p>
-      </LegalNote>
       <p><strong>Nahad Energie Elektrotechnik, Inhaber Reza Nahad, Vogelsanger Weg 38, 40470 Düsseldorf</strong><br />Stand: 29.09.2026</p>
       {sections.map((section) => (
         <section key={section.title} className="space-y-4">

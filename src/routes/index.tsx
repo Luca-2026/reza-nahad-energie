@@ -136,7 +136,7 @@ function Index() {
           <img src={workAsset.url} alt="Elektrotechnikermeister Reza Nahad prüft in Warnschutzkleidung die geöffnete Anlage eines Stromaggregats" width="768" height="1024" loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-md object-cover object-center" />
           <div>
             <p className="eyebrow">Persönlich geführt</p><h2 className="section-heading mt-3">Reza Nahad – Elektrotechnikermeister aus Düsseldorf</h2>
-            <p className="mt-5 text-muted-foreground">Ich habe meinen eigenen Betrieb in Düsseldorf gegründet, weil ich Elektrik so machen wollte, wie ich sie mir selbst im Haus wünsche: ordentlich verlegt, sauber beschriftet, geprüft und erklärt. Mein Betrieb sitzt am Vogelsanger Weg in Mörsenbroich; die meisten Kunden erreichen wir in 20 Minuten.</p>
+            <p className="mt-5 text-muted-foreground">Seit 2024 bin ich Elektrotechnikermeister und bringe zehn Jahre Berufserfahrung als Elektroinstallateur mit. Ich habe meinen eigenen Betrieb in Düsseldorf gegründet, weil ich Elektrik so machen wollte, wie ich sie mir selbst im Haus wünsche: ordentlich verlegt, sauber beschriftet, geprüft und erklärt. Mein Betrieb sitzt am Vogelsanger Weg in Mörsenbroich; die meisten Kunden erreichen wir in 20 Minuten.</p>
             <Button variant="dark" className="mt-8" asChild><Link to="/ueber-uns">Mehr über uns</Link></Button>
           </div>
         </div>
