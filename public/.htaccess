@@ -1,54 +1,54 @@
-# Nahad Energie – Apache-Konfiguration für STRATO (statische Seiten)
-Options -Indexes -MultiViews
+# Nahad Energie – statischer Export für STRATO (Apache)
+Options -MultiViews
 DirectoryIndex index.html
-DirectorySlash Off
 ErrorDocument 404 /404.html
 AddDefaultCharset utf-8
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # https + ohne www
-  RewriteCond %{HTTPS} !=on [OR]
-  RewriteCond %{HTTP_HOST} ^www\. [NC]
-  RewriteRule ^ https://nahad-energie.de%{REQUEST_URI} [L,R=301]
+  # Immer https und ohne www
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-  # Schrägstrich am Ende entfernen (außer Startseite)
-  RewriteCond %{REQUEST_URI} !^/$
-  RewriteRule ^(.+)/$ /$1 [L,R=301]
-
-  # /pfad -> /pfad/index.html (vorab erzeugte Seite)
+  # Vorhandene Dateien und Ordner direkt ausliefern
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
-  RewriteCond %{REQUEST_FILENAME}/index.html -f
-  RewriteRule ^(.+)$ /$1/index.html [L]
+  RewriteRule ^ - [L]
+
+  # /pfad auf die vorgerenderte /pfad/index.html abbilden
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*[^/])$ /$1/index.html [L]
+
+  # Alles andere auf die Startseite, der Router übernimmt
+  RewriteRule ^ /index.html [L]
 </IfModule>
 
-# Kompression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
 </IfModule>
 
-# Caching
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresDefault "access plus 1 hour"
   ExpiresByType text/html "access plus 0 seconds"
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
+
 <IfModule mod_headers.c>
-  <FilesMatch "\.(js|css|woff2|jpe?g|png|webp|svg)$">
+  <FilesMatch "\.(js|css|woff2|webp|jpg|jpeg|png|svg)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
   <FilesMatch "\.html$">
-    Header set Cache-Control "no-cache"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set X-Frame-Options "SAMEORIGIN"
 </IfModule>
