@@ -201,12 +201,12 @@ export function Breadcrumbs({ items }: { items: { label: string; to?: string }[]
 
 export function NoticeBar() {
   return (
-    <div className="border-b border-border bg-accent text-accent-foreground">
+    <div className="border-b border-accent/50 bg-secondary text-primary">
        <p className="mx-auto grid max-w-6xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 py-2 text-xs font-semibold leading-snug sm:flex sm:text-sm md:px-6">
-         <Siren className="size-4 shrink-0" aria-hidden="true" />
+         <Siren className="size-4 shrink-0 text-accent-strong" aria-hidden="true" />
          <span className="truncate sm:hidden">Störung oder Stromausfall?</span>
          <span className="hidden sm:inline">Störung oder Stromausfall? Störungsdienst:</span>
-         <a href={phoneHref} className="shrink-0 font-extrabold underline">{phoneDisplay}</a>
+         <a href={phoneHref} className="shrink-0 font-extrabold underline decoration-accent decoration-2 underline-offset-2">{phoneDisplay}</a>
          <span className="hidden sm:inline">· Zuschläge auf der <Link to="/notdienst" className="underline">Notdienst-Seite</Link>.</span>
       </p>
     </div>
