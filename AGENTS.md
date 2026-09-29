@@ -18,3 +18,4 @@
 - scripts/package-strato.py builds the FTP ZIP and copies Lovable Asset images into it under their original /__l5e/ paths.
 - Responsive page hierarchy is centralized in SiteLayout and semantic CSS utilities; this keeps all static routes visually consistent on mobile and desktop.
 - Cookie choice is stored only in the first-party `nahad_cookie_consent` cookie; no analytics or marketing scripts are loaded.
+- Sitewide motion is centralized in SiteLayout with IntersectionObserver and a reduced-motion fallback; this keeps static pages consistent and accessible.

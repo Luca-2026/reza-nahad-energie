@@ -77,6 +77,7 @@ function MobileMenu() {
        <SheetContent side="right" className="w-[min(23rem,calc(100vw-1rem))] overflow-y-auto">
         <SheetHeader><SheetTitle className="text-left text-primary">Menü</SheetTitle></SheetHeader>
         <nav aria-label="Mobile Navigation" className="mt-4 grid gap-1 px-4 pb-6">
+          <Link to="/" onClick={close} className="min-h-11 py-2 font-semibold text-foreground" activeProps={{ className: "text-primary underline decoration-accent decoration-2 underline-offset-8", "aria-current": "page" }}>Startseite</Link>
           <Accordion type="single" collapsible>
             <AccordionItem value="leistungen" className="border-b-0">
               <AccordionTrigger className="min-h-11 py-2 text-base font-semibold">Leistungen</AccordionTrigger>
@@ -116,23 +117,41 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     window.addEventListener("scroll", updateVisibility, { passive: true });
     return () => window.removeEventListener("scroll", updateVisibility);
   }, [pathname]);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-revealed");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+    sections.forEach((section, index) => {
+      section.classList.add("site-reveal");
+      if (index === 0) section.classList.add("is-revealed");
+      else observer.observe(section);
+    });
+    return () => observer.disconnect();
+  }, [pathname]);
   const showQuickContact = !onContact && (pathname !== "/" || showHomeQuickContact);
   return (
     <>
       <a href="#inhalt" className="sr-only z-50 bg-background px-4 py-3 text-primary focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Zum Inhalt springen</a>
        <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-sm">
          <div className="mx-auto grid h-18 max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 lg:flex lg:h-20 lg:px-6">
-          <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex min-w-0 items-center gap-3">
+           <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex min-w-0 items-center gap-3 transition-opacity hover:opacity-85">
             <img src={logoAsset.url} alt="" width="52" height="52" className="size-13 shrink-0" />
             <span className="hidden min-w-0 leading-tight sm:block"><span className="block font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
           </Link>
-           <nav aria-label="Hauptnavigation" className="ml-auto hidden items-center gap-5 lg:flex">
+            <nav aria-label="Hauptnavigation" className="ml-auto hidden h-full items-center gap-5 lg:flex">
+             <Link to="/" className="nav-link" activeOptions={{ exact: true }} activeProps={{ className: "nav-link-active", "aria-current": "page" }}>Startseite</Link>
             <MegaMenu />
-            {nav.map((n) => <Link key={n.to} to={n.to} className="text-sm font-semibold text-foreground hover:text-primary" activeProps={{ className: "text-primary underline underline-offset-8", "aria-current": "page" }}>{n.label}</Link>)}
+             {nav.map((n) => <Link key={n.to} to={n.to} className="nav-link" activeProps={{ className: "nav-link-active", "aria-current": "page" }}>{n.label}</Link>)}
           </nav>
-           <div className="flex shrink-0 items-center gap-2">
-            <a href={phoneHref} className="hidden min-h-11 items-center gap-2 text-sm font-bold text-primary md:flex"><Phone className="size-4" aria-hidden="true" />{phoneDisplay}</a>
-            <Button asChild className="hidden md:inline-flex"><Link to="/kontakt">Anfrage senden</Link></Button>
+            <div className="flex shrink-0 items-center gap-2 lg:ml-1 lg:border-l lg:border-border lg:pl-4 xl:gap-4">
+             <a href={phoneHref} className="hidden min-h-11 items-center gap-2 whitespace-nowrap text-sm font-bold text-primary transition-colors hover:text-accent-strong md:flex"><Phone className="size-4" aria-hidden="true" />{phoneDisplay}</a>
+             <Button asChild className="hidden shadow-sm transition-[transform,box-shadow,background-color] hover:-translate-y-0.5 hover:shadow-md md:inline-flex"><Link to="/kontakt">Anfrage senden</Link></Button>
             <MobileMenu />
           </div>
         </div>

@@ -85,14 +85,14 @@
   --secondary-foreground: oklch(0.27 0.055 253);
   --muted: oklch(0.96 0.008 255);
   --muted-foreground: oklch(0.49 0.035 253);
-  --accent: oklch(0.79 0.17 74);
-  --accent-strong: oklch(0.61 0.145 63);
+  --accent: oklch(0.7 0.202 44.44);
+  --accent-strong: oklch(0.54 0.16 44.44);
   --accent-foreground: oklch(0.27 0.055 253);
   --destructive: oklch(0.53 0.21 27);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.89 0.015 253);
   --input: oklch(0.89 0.015 253);
-  --ring: oklch(0.79 0.17 74);
+  --ring: oklch(0.7 0.202 44.44);
   --success: oklch(0.54 0.14 155);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -187,8 +187,53 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
   }
+}
+
+@utility nav-link {
+  align-items: center;
+  align-self: stretch;
+  color: var(--color-foreground);
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 600;
+  position: relative;
+  transition: color 180ms ease;
+  &::after {
+    background: var(--color-accent);
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms ease;
+    width: 100%;
+  }
+  &:hover { color: var(--color-primary); }
+  &:hover::after { transform: scaleX(1); transform-origin: left; }
+}
+
+@utility nav-link-active {
+  color: var(--color-primary);
+  &::after { transform: scaleX(1); }
+}
+
+.site-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1), transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-reveal { opacity: 1; transform: none; }
 }
 
 @utility section-heading {
