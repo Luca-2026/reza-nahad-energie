@@ -163,9 +163,11 @@
   h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 800;
+    hyphens: auto;
     letter-spacing: 0;
+    overflow-wrap: break-word;
     text-wrap: balance;
-    overflow-wrap: anywhere;
+    word-break: normal;
   }
 
   p, li, dd { overflow-wrap: anywhere; }
@@ -199,7 +201,9 @@
   font-size: 0.875rem;
   font-weight: 600;
   position: relative;
+  flex-shrink: 0;
   transition: color 180ms ease;
+  white-space: nowrap;
   &::after {
     background: var(--color-accent);
     bottom: 0;

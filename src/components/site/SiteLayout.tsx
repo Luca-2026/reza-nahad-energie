@@ -44,7 +44,7 @@ function MegaMenu() {
   const active = pathname.startsWith("/leistungen");
   return (
     <div ref={ref} className="relative">
-      <Button type="button" variant="ghost" aria-expanded={open} aria-controls="mega-leistungen" onClick={() => setOpen(!open)} className={`px-0 hover:bg-transparent ${active ? "text-primary" : "text-foreground"}`}>
+      <Button type="button" variant="ghost" aria-expanded={open} aria-controls="mega-leistungen" onClick={() => setOpen(!open)} className={`shrink-0 whitespace-nowrap px-0 hover:bg-transparent ${active ? "text-primary" : "text-foreground"}`}>
         Leistungen <ChevronDown className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
       </Button>
       {open && (
@@ -77,7 +77,7 @@ function MobileMenu() {
        <SheetContent side="right" className="w-[min(23rem,calc(100vw-1rem))] overflow-y-auto">
         <SheetHeader><SheetTitle className="text-left text-primary">Menü</SheetTitle></SheetHeader>
         <nav aria-label="Mobile Navigation" className="mt-4 grid gap-1 px-4 pb-6">
-          <Link to="/" onClick={close} className="min-h-11 py-2 font-semibold text-foreground" activeProps={{ className: "text-primary underline decoration-accent decoration-2 underline-offset-8", "aria-current": "page" }}>Startseite</Link>
+          <Link to="/" onClick={close} className="min-h-11 py-2 font-semibold leading-snug text-foreground" activeProps={{ className: "text-primary underline decoration-accent decoration-2 underline-offset-8", "aria-current": "page" }}>Startseite</Link>
           <Accordion type="single" collapsible>
             <AccordionItem value="leistungen" className="border-b-0">
               <AccordionTrigger className="min-h-11 py-2 text-base font-semibold">Leistungen</AccordionTrigger>
@@ -85,14 +85,14 @@ function MobileMenu() {
                 {megaMenu.map((col) => (
                   <div key={col.title} className="mb-3">
                     <p className="text-xs font-extrabold uppercase text-muted-foreground">{col.title}</p>
-                    <ul className="mt-1">{col.items.map((it) => <li key={it.label}><MenuLink item={it} onClick={close} className="block min-h-11 py-2 text-sm font-semibold text-foreground aria-[current=page]:text-primary" /></li>)}</ul>
+                    <ul className="mt-1">{col.items.map((it) => <li key={it.label}><MenuLink item={it} onClick={close} className="block min-h-11 py-2 text-sm font-semibold leading-snug text-foreground aria-[current=page]:text-primary" /></li>)}</ul>
                   </div>
                 ))}
                 <Link to="/leistungen" onClick={close} className="block min-h-11 py-2 text-sm font-bold text-primary">Alle Leistungen</Link>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          {nav.map((n) => <Link key={n.to} to={n.to} onClick={close} className="min-h-11 py-2 font-semibold text-foreground" activeProps={{ className: "text-primary", "aria-current": "page" }}>{n.label}</Link>)}
+          {nav.map((n) => <Link key={n.to} to={n.to} onClick={close} className="min-h-11 py-2 font-semibold leading-snug text-foreground" activeProps={{ className: "text-primary", "aria-current": "page" }}>{n.label}</Link>)}
           <a href={phoneHref} className="mt-4 flex min-h-11 items-center gap-2 font-bold text-primary"><Phone className="size-5" aria-hidden="true" />{phoneDisplay}</a>
           <Button size="lg" asChild className="mt-2"><Link to="/kontakt" onClick={close}>Anfrage senden</Link></Button>
         </nav>
@@ -125,9 +125,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
          <div className="mx-auto grid h-18 max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 lg:flex lg:h-20 lg:px-6">
            <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex min-w-0 items-center gap-3 transition-opacity hover:opacity-85">
             <img src={logoAsset.url} alt="" width="52" height="52" className="size-13 shrink-0" />
-            <span className="hidden min-w-0 leading-tight sm:block"><span className="block font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
+            <span className="hidden min-w-0 leading-tight sm:block lg:hidden xl:block"><span className="block whitespace-nowrap font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
           </Link>
-            <nav aria-label="Hauptnavigation" className="ml-auto hidden h-full items-center gap-5 lg:flex">
+            <nav aria-label="Hauptnavigation" className="ml-auto hidden h-full shrink-0 items-center gap-4 lg:flex xl:gap-5">
              <Link to="/" className="nav-link" activeOptions={{ exact: true }} activeProps={{ className: "nav-link-active", "aria-current": "page" }}>Startseite</Link>
             <MegaMenu />
              {nav.map((n) => <Link key={n.to} to={n.to} className="nav-link" activeProps={{ className: "nav-link-active", "aria-current": "page" }}>{n.label}</Link>)}
