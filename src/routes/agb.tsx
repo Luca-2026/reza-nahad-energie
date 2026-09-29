@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalHeading, LegalNote } from "@/components/site/LegalContent";
 import { LegalPage } from "@/components/site/LegalPage";
+import { WithdrawalContent } from "@/components/site/WithdrawalContent";
 import { seo } from "@/lib/site";
 
 const sections: { title: string; paragraphs: string[] }[] = [
@@ -101,6 +102,7 @@ export const Route = createFileRoute("/agb")({
           {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </section>
       ))}
+      <WithdrawalContent />
     </LegalPage>
   ),
 });
