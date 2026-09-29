@@ -103,7 +103,7 @@ export function PriceBox() {
         <div className="flex justify-between gap-4 py-2"><dt>Notdienst außerhalb der Geschäftszeiten</dt><dd className="font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
         <div className="flex justify-between gap-4 py-2"><dt>Projekte</dt><dd className="text-right font-semibold text-primary">Festpreis nach Vor-Ort-Termin</dd></div>
       </dl>
-      <p className="mt-3 text-xs text-muted-foreground">Alle Preise inkl. 19 % MwSt. Material wird separat berechnet.</p>
+      <p className="mt-3 text-xs text-muted-foreground">Alle Preise inkl. 19 % MwSt.</p>
     </div>
   );
 }
