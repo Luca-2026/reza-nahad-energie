@@ -16,21 +16,18 @@ import { areaServed, jsonLd } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-[60vh] items-center justify-center bg-background px-4 py-16">
+      <meta name="robots" content="noindex" />
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Seite nicht gefunden</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Diese Seite gibt es nicht oder sie wurde verschoben.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Zur Startseite
-          </Link>
-        </div>
+        <h1 className="text-3xl font-extrabold text-primary">Diese Seite gibt es nicht (mehr).</h1>
+        <p className="mt-3 text-muted-foreground">Vielleicht hat sich die Adresse geändert. Hier geht es weiter:</p>
+        <ul className="mt-6 flex flex-wrap justify-center gap-3 font-semibold text-primary">
+          <li><Link to="/" className="underline">Startseite</Link></li>
+          <li><Link to="/leistungen" className="underline">Leistungen</Link></li>
+          <li><Link to="/kontakt" className="underline">Kontakt</Link></li>
+          <li><Link to="/notdienst" className="underline">Notdienst</Link></li>
+        </ul>
+        <p className="mt-6 text-sm">Telefon: <a href="tel:+4921154268296" className="font-bold text-primary">0211 54268296</a></p>
       </div>
     </div>
   );

@@ -1,25 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CtaBand, PageHero, Section } from "@/components/site/SiteLayout";
+import { Breadcrumbs, CtaBand, PageHero, Section } from "@/components/site/SiteLayout";
 import { seo } from "@/lib/site";
-import workAsset from "@/assets/reza-nahad-elektroarbeit.jpeg.asset.json";
-import distributionAsset from "@/assets/nahad-baustromverteiler.jpeg.asset.json";
 
 export const Route = createFileRoute("/referenzen")({
-  head: () => seo("/referenzen", "Referenzen – Projekte in Düsseldorf | Nahad Energie", "Ausgewählte Projekte des Elektro-Meisterbetriebs Nahad Energie: Sanierungen, PV-Anlagen, Wallboxen, Gewerbe. Mit Fotos und Fakten aus Düsseldorf."),
+  head: () => {
+    const base = seo("/referenzen", "Referenzen – Projekte in Düsseldorf | Nahad Energie", "Ausgewählte Projekte des Elektro-Meisterbetriebs Nahad Energie aus Düsseldorf und Umgebung – mit Stadtteil, Aufgabe und Ergebnis.");
+    // Bis echte, freigegebene Referenzen vorliegen: nicht indexieren (Teil D.5)
+    return { ...base, meta: [...base.meta, { name: "robots", content: "noindex" }] };
+  },
   component: Page,
 });
 
 function Page() {
   return (
     <>
-      <PageHero eyebrow="Referenzen" title="Referenzen – ausgewählte Projekte aus Düsseldorf und Umgebung">Einblicke in unsere Arbeit. Weitere Projekte mit Fotos und Fakten folgen.</PageHero>
+      <Breadcrumbs items={[{ label: "Referenzen" }]} />
+      <PageHero eyebrow="Referenzen" title="Referenzen – ausgewählte Projekte aus Düsseldorf und Umgebung">Eine Auswahl aus unseren Aufträgen der letzten Zeit – mit Stadtteil, Aufgabe und dem, was daran besonders war. Alle Fotos mit Zustimmung der Kunden, Adressen und Namen bleiben privat.</PageHero>
       <Section>
-        <div className="grid gap-8 md:grid-cols-2">
-          <figure><img src={workAsset.url} alt="Prüfung und Instandsetzung eines Stromaggregats durch Nahad Energie" width="768" height="1024" loading="lazy" className="aspect-[4/3] w-full rounded-md object-cover" /><figcaption className="mt-3"><strong className="text-primary">Prüfung & Instandsetzung</strong><span className="block text-sm text-muted-foreground">Fehlersuche und Prüfung an einem Stromaggregat.</span></figcaption></figure>
-          <figure><img src={distributionAsset.url} alt="Baustromverteiler von Nahad Energie für die Stromversorgung einer Baustelle" width="768" height="922" loading="lazy" className="aspect-[4/3] w-full rounded-md bg-secondary object-contain" /><figcaption className="mt-3"><strong className="text-primary">Baustrom</strong><span className="block text-sm text-muted-foreground">Temporäre Stromversorgung für ein Bauvorhaben.</span></figcaption></figure>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="flex min-h-56 flex-col justify-end rounded-md border-2 border-dashed border-border bg-secondary p-6">
+              <p className="font-extrabold text-primary">Projekt in Vorbereitung</p>
+              <p className="mt-2 text-sm text-muted-foreground">Stadtteil · Leistung · Ausgangslage, Lösung und Ergebnis folgen nach Freigabe durch den Kunden.</p>
+            </div>
+          ))}
         </div>
       </Section>
-      <CtaBand />
+      <CtaBand title="Ihr Projekt fehlt hier noch?" />
     </>
   );
 }
