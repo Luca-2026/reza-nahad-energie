@@ -3,6 +3,7 @@ export const phoneHref = "tel:+4921154268296";
 export const email = "info@nahad-energie.de";
 export const brand = "Nahad Energie Elektrotechnik";
 export const mapsHref = "https://www.google.com/maps/dir/?api=1&destination=Vogelsanger+Weg+38,+40470+D%C3%BCsseldorf";
+export const googleProfileHref = "https://www.google.com/search?kgmid=/g/11zdd08txn&q=Nahad+Energie+Elektrotechnik";
 export const standDate = "09/2026";
 
 export const prices = { hourly: "89 €", travel: "45 €", emergency: "+100 %" };

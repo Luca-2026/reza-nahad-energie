@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { areaServed, jsonLd } from "@/lib/site";
+import { areaServed, googleProfileHref, jsonLd, mapsHref, services } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -98,6 +98,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "17:00" }],
         areaServed: areaServed.map((name) => ({ "@type": "City", name })),
         priceRange: "€€",
+        sameAs: [googleProfileHref],
+        hasMap: mapsHref,
+        knowsAbout: services.map((s) => s.name),
+        memberOf: { "@type": "Organization", name: "Elektro-Innung Düsseldorf" },
       }),
     ],
   }),

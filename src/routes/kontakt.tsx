@@ -27,6 +27,7 @@ function Page() {
             <a href={`mailto:${email}`} className="flex items-center gap-3 font-bold text-primary"><Mail className="size-5" aria-hidden="true" />{email}</a>
             <p className="text-sm"><strong className="block text-primary">Bürozeiten</strong><span className="text-muted-foreground">Montag–Freitag, 08:00–17:00 Uhr</span></p>
             <a href={mapsHref} target="_blank" rel="noopener" className="flex items-center gap-3 text-sm font-semibold text-primary underline"><ExternalLink className="size-4" aria-hidden="true" />Route planen (Google Maps – externer Link)</a>
+            <a href={googleProfileHref} target="_blank" rel="noopener" className="flex items-center gap-3 text-sm font-semibold text-primary underline"><ExternalLink className="size-4" aria-hidden="true" />Unser Google-Unternehmensprofil (externer Link)</a>
           </address>
         </div>
       </Section>
