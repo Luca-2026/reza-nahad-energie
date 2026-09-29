@@ -81,10 +81,10 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
             </Link>
           ); })}
-          <Link to="/notdienst" className="group border-b border-border bg-accent p-5 text-accent-foreground sm:border-r lg:p-6">
-            <Siren className="size-6" aria-hidden="true" />
+          <Link to="/notdienst" className="group border-b border-t-2 border-border border-t-accent bg-card p-5 text-primary transition-colors hover:bg-secondary sm:border-r lg:p-6">
+            <Siren className="size-6 text-accent-strong" aria-hidden="true" />
             <h3 className="mt-3 text-lg font-extrabold">Notdienst</h3>
-            <p className="mt-2 text-sm">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>
+            <p className="mt-2 text-sm text-muted-foreground">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>
           </Link>
         </div>
         <Link to="/leistungen" className="mt-6 inline-flex items-center gap-1 font-bold text-primary hover:underline">Alle Leistungen im Überblick <ArrowRight className="size-4" aria-hidden="true" /></Link>

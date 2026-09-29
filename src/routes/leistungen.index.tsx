@@ -29,10 +29,10 @@ function Cards({ items, emergency = false }: { items: Service[]; emergency?: boo
         </Link>
       ); })}
       {emergency && (
-        <Link to="/notdienst" className="border-b border-r border-border bg-accent p-5 text-accent-foreground lg:p-6">
-          <Siren className="size-6" aria-hidden="true" />
+        <Link to="/notdienst" className="border-b border-r border-t-2 border-border border-t-accent bg-card p-5 text-primary transition-colors hover:bg-secondary lg:p-6">
+          <Siren className="size-6 text-accent-strong" aria-hidden="true" />
           <h3 className="mt-3 text-lg font-extrabold">Notdienst</h3>
-          <p className="mt-2 text-sm">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>
         </Link>
       )}
     </div>
