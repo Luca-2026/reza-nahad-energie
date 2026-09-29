@@ -23,7 +23,7 @@ function Page() {
           <div>
             <h2 className="text-2xl font-extrabold text-primary">Direkt mit dem Meister sprechen</h2>
             <p className="mt-4 text-muted-foreground">Bei Nahad Energie Elektrotechnik sprechen Sie persönlich mit Inhaber Reza Nahad. Er bespricht Ihr Anliegen verständlich, plant sorgfältig und steht für die fachgerechte Ausführung ein.</p>
-            <ul className="mt-6 space-y-3">{["Meisterbetrieb, eingetragen in die Handwerksrolle", "Ein fester Ansprechpartner", "Saubere Dokumentation und klare Absprachen"].map((t) => <li key={t} className="flex gap-3 font-semibold"><ShieldCheck className="size-5 shrink-0 text-success" aria-hidden="true" />{t}</li>)}</ul>
+            <ul className="mt-6 space-y-3">{["Meisterbetrieb, eingetragen in die Handwerksrolle", "Mitglied der Elektro-Innung", "Eingetragen im Installateurverzeichnis der Netzgesellschaft Düsseldorf", "Ein fester Ansprechpartner", "Saubere Dokumentation und klare Absprachen"].map((t) => <li key={t} className="flex gap-3 font-semibold"><ShieldCheck className="size-5 shrink-0 text-success" aria-hidden="true" />{t}</li>)}</ul>
           </div>
         </div>
       </Section>
