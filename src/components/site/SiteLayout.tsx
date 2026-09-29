@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowRight, ChevronDown, Menu, Phone } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, Phone, Siren } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -103,7 +103,20 @@ function MobileMenu() {
 const footerLink = "hover:text-primary-foreground";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
-  const onContact = useRouterState({ select: (s) => s.location.pathname.replace(/\/$/, "") === "/kontakt" });
+  const pathname = useRouterState({ select: (s) => s.location.pathname.replace(/\/$/, "") || "/" });
+  const onContact = pathname === "/kontakt";
+  const [showHomeQuickContact, setShowHomeQuickContact] = useState(false);
+  useEffect(() => {
+    if (pathname !== "/") {
+      setShowHomeQuickContact(true);
+      return;
+    }
+    const updateVisibility = () => setShowHomeQuickContact(window.scrollY > 240);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, [pathname]);
+  const showQuickContact = !onContact && (pathname !== "/" || showHomeQuickContact);
   return (
     <>
       <a href="#inhalt" className="sr-only z-50 bg-background px-4 py-3 text-primary focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Zum Inhalt springen</a>
@@ -150,7 +163,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div className="mx-auto max-w-6xl px-4 pb-6 text-xs text-primary-foreground/70 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister</div>
         </div>
       </footer>
-      {!onContact && <nav aria-label="Schnellkontakt" className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t border-border bg-background md:hidden">
+       {showQuickContact && <nav aria-label="Schnellkontakt" className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t border-border bg-background md:hidden">
         <a href={phoneHref} className="flex min-h-16 flex-col items-center justify-center gap-1 text-xs font-bold text-primary"><Phone className="size-5" aria-hidden="true" />Anrufen</a>
         <Link to="/kontakt" className="flex min-h-16 flex-col items-center justify-center gap-1 bg-accent text-xs font-bold text-accent-foreground"><ArrowRight className="size-5" aria-hidden="true" />Anfrage</Link>
       </nav>}
@@ -187,8 +200,12 @@ export function Breadcrumbs({ items }: { items: { label: string; to?: string }[]
 export function NoticeBar() {
   return (
     <div className="border-b border-border bg-accent text-accent-foreground">
-       <p className="mx-auto max-w-6xl px-4 py-2 text-center text-xs font-semibold leading-relaxed sm:text-left sm:text-sm md:px-6">
-        Störung oder Stromausfall? Störungsdienst: <a href={phoneHref} className="font-extrabold underline">{phoneDisplay}</a> · Zuschläge stehen offen auf der <Link to="/notdienst" className="underline">Notdienst-Seite</Link>.
+       <p className="mx-auto grid max-w-6xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 py-2 text-xs font-semibold leading-snug sm:flex sm:text-sm md:px-6">
+         <Siren className="size-4 shrink-0" aria-hidden="true" />
+         <span className="truncate sm:hidden">Störung oder Stromausfall?</span>
+         <span className="hidden sm:inline">Störung oder Stromausfall? Störungsdienst:</span>
+         <a href={phoneHref} className="shrink-0 font-extrabold underline">{phoneDisplay}</a>
+         <span className="hidden sm:inline">· Zuschläge auf der <Link to="/notdienst" className="underline">Notdienst-Seite</Link>.</span>
       </p>
     </div>
   );
