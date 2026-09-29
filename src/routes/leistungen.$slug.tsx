@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
-import { CtaBand, PageHero, Section } from "@/components/site/SiteLayout";
-import { areaServed, getService, jsonLd, seo } from "@/lib/site";
+import { CtaBand, PageHero, PriceBox, Section } from "@/components/site/SiteLayout";
+import { areaServed, getService, jsonLd, ngdNote, ngdServices, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/leistungen/$slug")({
   loader: ({ params }) => {
@@ -43,11 +43,15 @@ function Page() {
             <h2 className="mt-10 text-2xl font-extrabold text-primary">So läuft es ab</h2>
             <ol className="mt-6 grid gap-6 sm:grid-cols-3">{[["01", "Anfrage", "Sie schildern kurz Ihr Vorhaben."], ["02", "Vor-Ort-Termin", "Wir prüfen die Situation und nennen einen Festpreis."], ["03", "Ausführung", "Fachgerechte Umsetzung mit Dokumentation."]].map(([n, t, d]) => <li key={n} className="border-t-2 border-accent pt-4"><span className="font-display text-sm font-extrabold text-accent-strong">{n}</span><h3 className="mt-1 font-extrabold text-primary">{t}</h3><p className="mt-1 text-sm text-muted-foreground">{d}</p></li>)}</ol>
           </div>
+          <div className="space-y-6">
+          {ngdServices.includes(s.slug) && <p className="rounded-md bg-secondary p-4 text-sm font-semibold text-primary">{ngdNote} – Anmeldung und Inbetriebsetzung übernehmen wir selbst.</p>}
+          <PriceBox />
           <aside className="h-fit rounded-md border border-border bg-secondary p-6">
             <h2 className="font-extrabold text-primary">Verwandte Leistungen</h2>
             <ul className="mt-4 space-y-3">{related.map((r) => <li key={r.slug}><Link to="/leistungen/$slug" params={{ slug: r.slug }} className="inline-flex items-center gap-1 font-semibold text-primary hover:underline">{r.name} in Düsseldorf <ArrowRight className="size-4" aria-hidden="true" /></Link></li>)}</ul>
             <p className="mt-6 text-sm text-muted-foreground">Wir sind in ganz Düsseldorf und Umgebung im Einsatz. <Link to="/einsatzgebiet" className="font-semibold text-primary underline">Zum Einsatzgebiet</Link></p>
           </aside>
+          </div>
         </div>
       </Section>
       <CtaBand text={`Anfrage zu ${s.name} – wir melden uns persönlich zur Abstimmung.`} />

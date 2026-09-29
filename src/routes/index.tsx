@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Building2, Check, Factory, House, MapPin, Phone, ShieldCheck, Siren } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CtaBand, Section } from "@/components/site/SiteLayout";
+import { CtaBand, PriceBox, Section } from "@/components/site/SiteLayout";
 import { phoneDisplay, phoneHref, seo, services } from "@/lib/site";
 import officeAsset from "@/assets/reza-nahad-buero.jpeg.asset.json";
 import workAsset from "@/assets/reza-nahad-elektroarbeit.jpeg.asset.json";
@@ -18,7 +18,7 @@ function Index() {
       <section className="overflow-hidden bg-primary text-primary-foreground">
         <div className="mx-auto grid min-h-[620px] max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1.05fr_.95fr] md:px-6 md:py-20">
           <div>
-            <div className="mb-5 flex items-center gap-2 text-sm font-bold text-accent"><MapPin className="size-4" aria-hidden="true" /> Düsseldorf-Mörsenbroich & Umgebung</div>
+            <div className="mb-5 flex items-center gap-2 text-sm font-bold text-accent"><MapPin className="size-4" aria-hidden="true" /> Elektrotechnik-Meisterbetrieb · Düsseldorf-Mörsenbroich</div>
             <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.08] sm:text-5xl">Elektriker in Düsseldorf – Ihr Meisterbetrieb für Elektroinstallation, Photovoltaik und Wallbox</h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/80">Persönlich betreut durch Elektrotechnikermeister Reza Nahad – für private Haushalte, Hausverwaltungen und Gewerbe.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -27,8 +27,9 @@ function Index() {
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-primary-foreground/90">
               <li className="flex items-center gap-2"><BadgeCheck className="size-5 text-accent" aria-hidden="true" />Meisterbetrieb</li>
-              <li className="flex items-center gap-2"><Check className="size-5 text-accent" aria-hidden="true" />Persönlicher Ansprechpartner</li>
-              <li className="flex items-center gap-2"><Check className="size-5 text-accent" aria-hidden="true" />Festpreis nach Vor-Ort-Termin</li>
+              <li className="flex items-center gap-2"><Check className="size-5 text-accent" aria-hidden="true" />Handwerksrolle HWK Düsseldorf</li>
+              <li className="flex items-center gap-2"><Check className="size-5 text-accent" aria-hidden="true" />Installateurverzeichnis Netzgesellschaft Düsseldorf</li>
+              <li className="flex items-center gap-2"><Check className="size-5 text-accent" aria-hidden="true" />Rückmeldung innerhalb eines Werktags</li>
             </ul>
           </div>
           <div className="relative mx-auto w-full max-w-md md:max-w-none">
@@ -86,6 +87,12 @@ function Index() {
       </section>
 
       <Section>
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div><p className="text-sm font-extrabold uppercase text-accent-strong">Preise</p><h2 className="mt-3 text-3xl font-extrabold text-primary">Was kostet ein Elektriker in Düsseldorf?</h2><p className="mt-4 text-muted-foreground">Bei uns stehen die Preise vorher fest – ohne Überraschungen auf der Rechnung. Größere Arbeiten bieten wir nach dem Vor-Ort-Termin zum Festpreis an.</p></div>
+          <PriceBox />
+        </div>
+      </Section>
+      <Section muted>
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div><p className="text-sm font-extrabold uppercase text-accent-strong">Einsatzgebiet</p><h2 className="mt-2 text-3xl font-extrabold text-primary">Elektriker für ganz Düsseldorf und das Umland</h2><p className="mt-3 text-muted-foreground">Unser Betrieb sitzt am Vogelsanger Weg 38 in Düsseldorf-Mörsenbroich – kurze Wege nach Rath, Derendorf, Unterrath, Gerresheim und Flingern.</p></div>
           <Button variant="outline" asChild><Link to="/einsatzgebiet">Unser Einsatzgebiet</Link></Button>

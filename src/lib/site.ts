@@ -3,6 +3,10 @@ export const phoneHref = "tel:+4921154268296";
 export const whatsappHref = "https://wa.me/4921154268296";
 export const brand = "Nahad Energie Elektrotechnik";
 
+export const prices = { hourly: "89 €", travel: "45 €", emergency: "+100 %" };
+export const ngdNote = "Eingetragen im Installateurverzeichnis der Netzgesellschaft Düsseldorf";
+export const ngdServices = ["photovoltaik", "wallbox", "zaehlerschrank-sicherungskasten"];
+
 export function seo(path: string, title: string, description: string, type = "website") {
   return {
     meta: [
@@ -99,7 +103,7 @@ export const services: Service[] = [
     related: ["beleuchtung-led", "netzwerk-tuersprechanlage", "photovoltaik"],
   },
   {
-    slug: "e-check", name: "E-Check & Anlagenprüfung", cluster: "Sicherheit",
+    slug: "e-check", name: "E-CHECK", cluster: "Sicherheit",
     short: "Prüfung der Elektroanlage mit Protokoll – für Eigentümer und Vermieter.",
     title: "E-Check Düsseldorf – Prüfung elektrischer Anlagen | Nahad",
     description: "Prüfung der Elektroanlage in Düsseldorf mit Protokoll: für Eigentümer, Vermieter und Käufer. Sicherheit nach DIN VDE, klare Empfehlungen, faire Pauschale.",

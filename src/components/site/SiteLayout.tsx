@@ -1,9 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/nahad-energie-logo.png.asset.json";
-import { phoneDisplay, phoneHref, services, whatsappHref } from "@/lib/site";
+import { phoneDisplay, phoneHref, prices, services, whatsappHref } from "@/lib/site";
 
 const nav = [
   { to: "/leistungen", label: "Leistungen" },
@@ -16,6 +16,7 @@ const nav = [
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const onContact = useRouterState({ select: (s) => s.location.pathname === "/kontakt" });
   return (
     <>
       <a href="#inhalt" className="sr-only z-50 bg-background px-4 py-3 text-primary focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Zum Inhalt springen</a>
@@ -54,13 +55,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <li><Link to="/ueber-uns">Über uns</Link></li><li><Link to="/karriere">Karriere</Link></li><li><Link to="/faq">Häufige Fragen</Link></li><li><Link to="/impressum">Impressum</Link></li><li><Link to="/datenschutz">Datenschutz</Link></li><li><Link to="/agb">AGB</Link></li>
           </ul></div>
         </div>
-        <div className="border-t border-primary-foreground/15"><div className="mx-auto max-w-6xl px-4 py-5 text-xs text-primary-foreground/60 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister</div></div>
+        <div className="border-t border-primary-foreground/15"><div className="mx-auto max-w-6xl px-4 py-5 text-xs text-primary-foreground/60 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister · Eingetragen in die Handwerksrolle · Innungsbetrieb · Installateurverzeichnis Netzgesellschaft Düsseldorf</div></div>
       </footer>
-      <nav aria-label="Schnellkontakt" className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-border bg-background md:hidden">
+      {!onContact && <nav aria-label="Schnellkontakt" className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-border bg-background md:hidden">
         <a href={phoneHref} className="flex min-h-16 flex-col items-center justify-center gap-1 text-xs font-bold text-primary"><Phone className="size-5" aria-hidden="true" />Anrufen</a>
         <a href={whatsappHref} className="flex min-h-16 flex-col items-center justify-center gap-1 border-x border-border text-xs font-bold text-primary"><MessageCircle className="size-5" aria-hidden="true" />WhatsApp</a>
         <Link to="/kontakt" className="flex min-h-16 flex-col items-center justify-center gap-1 bg-accent text-xs font-bold text-accent-foreground"><ArrowRight className="size-5" aria-hidden="true" />Anfrage</Link>
-      </nav>
+      </nav>}
     </>
   );
 }
@@ -89,5 +90,20 @@ export function CtaBand({ text = "Schildern Sie kurz Ihr Vorhaben – wir melden
         <div className="flex flex-col gap-3 sm:flex-row"><Button size="lg" asChild><Link to="/kontakt">Anfrage an Nahad Energie <ArrowRight className="size-5" aria-hidden="true" /></Link></Button><Button size="lg" variant="outline" asChild><a href={phoneHref}><Phone className="size-5" aria-hidden="true" />{phoneDisplay}</a></Button></div>
       </div>
     </Section>
+  );
+}
+
+export function PriceBox() {
+  return (
+    <div className="rounded-md border-2 border-accent bg-card p-6">
+      <h2 className="font-display text-xl font-extrabold text-primary">Preise – transparent und inkl. MwSt.</h2>
+      <dl className="mt-4 divide-y divide-border tabular-nums">
+        <div className="flex justify-between gap-4 py-2"><dt>Stundensatz Elektriker</dt><dd className="font-extrabold text-primary">{prices.hourly}</dd></div>
+        <div className="flex justify-between gap-4 py-2"><dt>Anfahrt innerhalb Düsseldorfs</dt><dd className="font-extrabold text-primary">{prices.travel}</dd></div>
+        <div className="flex justify-between gap-4 py-2"><dt>Notdienst außerhalb der Geschäftszeiten</dt><dd className="font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
+        <div className="flex justify-between gap-4 py-2"><dt>Projekte</dt><dd className="text-right font-semibold text-primary">Festpreis nach Vor-Ort-Termin</dd></div>
+      </dl>
+      <p className="mt-3 text-xs text-muted-foreground">Alle Preise inkl. 19 % MwSt. Material wird separat berechnet.</p>
+    </div>
   );
 }

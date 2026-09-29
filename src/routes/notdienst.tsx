@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CtaBand, PageHero, Section } from "@/components/site/SiteLayout";
+import { CtaBand, PageHero, PriceBox, Section } from "@/components/site/SiteLayout";
 import { phoneDisplay, phoneHref, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/notdienst")({
@@ -21,7 +21,11 @@ function Page() {
     <>
       <PageHero eyebrow="Notdienst & Störung" title="Elektro-Notdienst in Düsseldorf – wenn der Strom weg ist">Ein echter Düsseldorfer Meisterbetrieb mit Adresse und Gesicht – kein anonymes Portal.</PageHero>
       <Section>
-        <div className="rounded-md border-2 border-destructive bg-card p-6">
+        <div className="grid gap-6 md:grid-cols-2">
+          <a href={phoneHref} className="flex flex-col items-center justify-center gap-2 rounded-md bg-accent p-8 text-center text-accent-foreground"><Phone className="size-8" aria-hidden="true" /><span className="font-display text-3xl font-extrabold">{phoneDisplay}</span><span className="font-semibold">Jetzt anrufen – wir klären am Telefon, was zu tun ist</span></a>
+          <PriceBox />
+        </div>
+        <div className="mt-10 rounded-md border-2 border-destructive bg-card p-6">
           <h2 className="text-xl font-extrabold text-destructive">Brandgeruch, Funken oder Rauch?</h2>
           <p className="mt-2">Sicherung sofort ausschalten, betroffene Räume verlassen und bei Brand die Feuerwehr unter <a href="tel:112" className="font-bold underline">112</a> rufen.</p>
         </div>
