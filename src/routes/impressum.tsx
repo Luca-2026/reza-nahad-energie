@@ -11,7 +11,7 @@ export const Route = createFileRoute("/impressum")({
       <p><strong>Nahad Energie Elektrotechnik</strong><br />Inhaber: Reza Nahad<br />Vogelsanger Weg 38<br />40470 Düsseldorf<br />Deutschland</p>
 
       <LegalHeading>Kontakt</LegalHeading>
-      <p>Telefon: <a href="tel:+4921154268296">0211 54268296</a><br />E-Mail: <a href="mailto:info@nahad-energie.de">info@nahad-energie.de</a></p>
+      <p>Telefon: <a href="tel:+4921154268296">0211 54268296</a><br />E-Mail: <a href="mailto:info@nahad-energie.de">info@nahad-energie.de</a><br />Bürozeiten: Montag–Freitag, 08:00–17:00 Uhr</p>
 
       <LegalHeading>Steuerliche Angaben</LegalHeading>
       <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE458342898<br />Steuernummer: 122/5738/0424</p>

@@ -30,7 +30,7 @@ function Page() {
           <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad am Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" loading="lazy" className="aspect-[4/3] w-full rounded-md object-cover" />
           <div>
             <h2 className="text-2xl font-extrabold text-primary md:text-3xl">Reza Nahad, Elektrotechnikermeister</h2>
-            <p className="mt-4 text-muted-foreground">Was mich antreibt: Elektroanlagen sind Vertrauenssache. Der Kunde sieht am Ende eine Steckdose – ob dahinter sauber geklemmt, richtig abgesichert und ordentlich gemessen wurde, sieht er nicht. Genau das ist mein Job.</p>
+            <p className="mt-4 text-muted-foreground">Seit 2024 bin ich Elektrotechnikermeister. Zuvor und bis heute habe ich insgesamt zehn Jahre Berufserfahrung als Elektroinstallateur gesammelt. Was mich antreibt: Elektroanlagen sind Vertrauenssache. Der Kunde sieht am Ende eine Steckdose – ob dahinter sauber geklemmt, richtig abgesichert und ordentlich gemessen wurde, sieht er nicht. Genau das ist mein Job.</p>
           </div>
         </div>
       </Section>
@@ -40,10 +40,10 @@ function Page() {
             <h2 className="text-2xl font-extrabold text-primary md:text-3xl">Qualifikationen, die Sie prüfen können</h2>
             <ul className="mt-6 space-y-3">
               {[
-                "Elektrotechnikermeister (Handwerkskammer Düsseldorf)",
+                "Elektrotechnikermeister seit 2024",
                 "Eingetragen in die Handwerksrolle der Handwerkskammer Düsseldorf, Elektrotechniker-Handwerk – Betriebsnummer 1887466",
                 "Eingetragener Installateur im Installateurverzeichnis der Netzgesellschaft Düsseldorf mbH – Voraussetzung für Zählerarbeiten, PV-Inbetriebsetzung und § 14a-Anmeldungen",
-                "Mitglied der Elektro-Innung Düsseldorf, E-Markenbetrieb",
+                "Mitglied der Elektro-Innung Düsseldorf – berechtigt, den E-CHECK anzubieten",
               ].map((t) => <li key={t} className="flex gap-3 font-semibold"><ShieldCheck className="mt-0.5 size-5 shrink-0 text-success" aria-hidden="true" />{t}</li>)}
             </ul>
             <p className="mt-4 text-sm text-muted-foreground">Wir zeigen nur Qualifikationen, die wir belegen können. Zertifikate legen wir auf Wunsch vor.</p>

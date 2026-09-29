@@ -95,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         telephone: "+49 211 54268296",
         founder: { "@type": "Person", name: "Reza Nahad", jobTitle: "Elektrotechnikermeister" },
         address: { "@type": "PostalAddress", streetAddress: "Vogelsanger Weg 38", postalCode: "40470", addressLocality: "Düsseldorf", addressCountry: "DE" },
+        openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "17:00" }],
         areaServed: areaServed.map((name) => ({ "@type": "City", name })),
         priceRange: "€€",
       }),
