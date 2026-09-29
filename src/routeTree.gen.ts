@@ -20,6 +20,7 @@ import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as NotdienstRouteImport } from './routes/notdienst'
 import { Route as ReferenzenRouteImport } from './routes/referenzen'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as WiderrufsbelehrungRouteImport } from './routes/widerrufsbelehrung'
 import { Route as LeistungenIndexRouteImport } from './routes/leistungen.index'
 import { Route as LeistungenSlugRouteImport } from './routes/leistungen.$slug'
 
@@ -78,6 +79,11 @@ const UeberUnsRoute = UeberUnsRouteImport.update({
   path: '/ueber-uns',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WiderrufsbelehrungRoute = WiderrufsbelehrungRouteImport.update({
+  id: '/widerrufsbelehrung',
+  path: '/widerrufsbelehrung',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LeistungenIndexRoute = LeistungenIndexRouteImport.update({
   id: '/leistungen/',
   path: '/leistungen/',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/notdienst': typeof NotdienstRoute
   '/referenzen': typeof ReferenzenRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/widerrufsbelehrung': typeof WiderrufsbelehrungRoute
   '/leistungen/$slug': typeof LeistungenSlugRoute
   '/leistungen/': typeof LeistungenIndexRoute
 }
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/notdienst': typeof NotdienstRoute
   '/referenzen': typeof ReferenzenRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/widerrufsbelehrung': typeof WiderrufsbelehrungRoute
   '/leistungen/$slug': typeof LeistungenSlugRoute
   '/leistungen': typeof LeistungenIndexRoute
 }
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/notdienst': typeof NotdienstRoute
   '/referenzen': typeof ReferenzenRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/widerrufsbelehrung': typeof WiderrufsbelehrungRoute
   '/leistungen/$slug': typeof LeistungenSlugRoute
   '/leistungen/': typeof LeistungenIndexRoute
 }
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/notdienst'
     | '/referenzen'
     | '/ueber-uns'
+    | '/widerrufsbelehrung'
     | '/leistungen/$slug'
     | '/leistungen/'
   fileRoutesByTo: FileRoutesByTo
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
     | '/notdienst'
     | '/referenzen'
     | '/ueber-uns'
+    | '/widerrufsbelehrung'
     | '/leistungen/$slug'
     | '/leistungen'
   id:
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '/notdienst'
     | '/referenzen'
     | '/ueber-uns'
+    | '/widerrufsbelehrung'
     | '/leistungen/$slug'
     | '/leistungen/'
   fileRoutesById: FileRoutesById
@@ -195,6 +207,7 @@ export interface RootRouteChildren {
   NotdienstRoute: typeof NotdienstRoute
   ReferenzenRoute: typeof ReferenzenRoute
   UeberUnsRoute: typeof UeberUnsRoute
+  WiderrufsbelehrungRoute: typeof WiderrufsbelehrungRoute
   LeistungenSlugRoute: typeof LeistungenSlugRoute
   LeistungenIndexRoute: typeof LeistungenIndexRoute
 }
@@ -278,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UeberUnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/widerrufsbelehrung': {
+      id: '/widerrufsbelehrung'
+      path: '/widerrufsbelehrung'
+      fullPath: '/widerrufsbelehrung'
+      preLoaderRoute: typeof WiderrufsbelehrungRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/leistungen/': {
       id: '/leistungen/'
       path: '/leistungen'
@@ -307,6 +327,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotdienstRoute: NotdienstRoute,
   ReferenzenRoute: ReferenzenRoute,
   UeberUnsRoute: UeberUnsRoute,
+  WiderrufsbelehrungRoute: WiderrufsbelehrungRoute,
   LeistungenSlugRoute: LeistungenSlugRoute,
   LeistungenIndexRoute: LeistungenIndexRoute,
 }

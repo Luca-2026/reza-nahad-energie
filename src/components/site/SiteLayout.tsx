@@ -139,7 +139,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div><h2 className="text-sm font-extrabold text-accent">Leistungen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{services.map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className={footerLink}>{s.name}</Link></li>)}<li><Link to="/notdienst" className={footerLink}>Notdienst</Link></li></ul></div>
           <div><h2 className="text-sm font-extrabold text-accent">Einsatzgebiet</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{areaServed.map((a) => <li key={a}><Link to="/einsatzgebiet" className={footerLink}>Elektriker {a}</Link></li>)}</ul></div>
           <div><h2 className="text-sm font-extrabold text-accent">Rechtliches & mehr</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">
-            <li><Link to="/impressum" className={footerLink}>Impressum</Link></li><li><Link to="/datenschutz" className={footerLink}>Datenschutz</Link></li><li><Link to="/agb" className={footerLink}>AGB</Link></li><li><Link to="/karriere" className={footerLink}>Karriere</Link></li><li><Link to="/faq" className={footerLink}>Häufige Fragen</Link></li>
+             <li><Link to="/impressum" className={footerLink}>Impressum</Link></li><li><Link to="/datenschutz" className={footerLink}>Datenschutz</Link></li><li><Link to="/agb" className={footerLink}>AGB</Link></li><li><Link to="/widerrufsbelehrung" className={footerLink}>Widerrufsbelehrung</Link></li><li><Link to="/karriere" className={footerLink}>Karriere</Link></li><li><Link to="/faq" className={footerLink}>Häufige Fragen</Link></li>
           </ul></div>
         </div>
         <div className="border-t border-primary-foreground/15">

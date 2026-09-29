@@ -16,7 +16,7 @@ const serviceSlugs = [
 const staticPaths = [
   "/", "/leistungen", ...serviceSlugs.map((s) => `/leistungen/${s}`),
   "/notdienst", "/ueber-uns", "/referenzen", "/einsatzgebiet", "/karriere",
-  "/kontakt", "/faq", "/impressum", "/datenschutz", "/agb",
+  "/kontakt", "/faq", "/impressum", "/datenschutz", "/agb", "/widerrufsbelehrung",
 ];
 
 export default defineConfig({
