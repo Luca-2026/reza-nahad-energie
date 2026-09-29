@@ -44,9 +44,9 @@ function Index() {
               <figcaption className="relative mt-2 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister und Inhaber</figcaption>
             </figure>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Von der defekten Steckdose bis zur PV-Anlage mit Speicher und Ladepunkt: Wir planen, installieren und melden beim Netzbetreiber an – persönlich geführt von Elektrotechnikermeister Reza Nahad, mit Preisen, die Sie vor dem Auftrag kennen.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button size="lg" asChild><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button>
-              <Button size="lg" variant="outline" asChild><a href={phoneHref}><Phone className="size-5" aria-hidden="true" /> {phoneDisplay} anrufen</a></Button>
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+              <Button size="lg" asChild className="shadow-sm transition-[transform,box-shadow,background-color] hover:-translate-y-0.5 hover:shadow-md"><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button>
+              <Button size="lg" variant="outline" asChild className="transition-[transform,background-color] hover:-translate-y-0.5"><a href={phoneHref}><Phone className="size-5" aria-hidden="true" /> {phoneDisplay} anrufen</a></Button>
             </div>
             <ul className="mt-8 grid gap-3 border-t border-border pt-6 text-sm font-semibold text-foreground sm:grid-cols-2">
               <li className="flex items-center gap-2"><BadgeCheck className="size-5 shrink-0 text-accent" aria-hidden="true" />Meisterbetrieb, Inhaber persönlich vor Ort</li>
@@ -75,7 +75,7 @@ function Index() {
         <p className="mt-4 max-w-3xl text-muted-foreground">Ein Ansprechpartner für alles, was mit Strom im Gebäude zu tun hat – von der klassischen Installation bis zur Energietechnik, die in den nächsten Jahren in fast jedes Haus kommt.</p>
         <div className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => { const Icon = serviceIcons[s.icon]; return (
-            <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="group border-b border-border p-5 transition-colors hover:bg-secondary sm:border-r lg:p-6">
+            <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="group border-b border-border p-5 transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-secondary sm:border-r lg:p-6">
               <Icon className="size-6 text-accent-strong" aria-hidden="true" />
               <h3 className="mt-3 text-lg font-extrabold text-card-foreground group-hover:text-primary">{s.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
