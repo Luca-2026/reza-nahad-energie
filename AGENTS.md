@@ -15,7 +15,7 @@
 - Shared header/footer live in SiteLayout, mounted in __root — every page gets the same navigation.
 - Every public page is prerendered to static HTML (vite.config.ts `pages` list) so dist/client can be FTP-uploaded to STRATO Apache; keep the list, sitemap.xml and .htaccess in sync.
 - No server functions or server-only loaders for the live site: it has no Node server; the contact form posts to public/api/contact.php (PHP on STRATO). Sole exception: src/routes/api/preview-contact-test.ts, a preview-only Resend test route (RESEND_API_KEY secret) that is absent from the static STRATO export.
-- scripts/package-strato.py builds the FTP ZIP and copies Lovable Asset images into it under their original /__l5e/ paths.
+- `npm run build` runs scripts/build-static.mjs (same as Sandhoff Digital): dist becomes the complete FTP upload with images localized under /media; the Apache 404 came from hosting dist/server-style output.
 - Responsive page hierarchy is centralized in SiteLayout and semantic CSS utilities; this keeps all static routes visually consistent on mobile and desktop.
 - Cookie choice is stored only in the first-party `nahad_cookie_consent` cookie; no analytics or marketing scripts are loaded.
 - Sitewide motion uses CSS-only section entrances with a reduced-motion fallback; this avoids hydration side effects on prerendered pages.
