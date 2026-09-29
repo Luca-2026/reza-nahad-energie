@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Use the existing TanStack Start application structure; the hosted preview requires it and all pages stay within that routing system.
+- Keep brand media as Lovable Assets pointers, except the derived favicon; this avoids committing large uploaded binaries.
