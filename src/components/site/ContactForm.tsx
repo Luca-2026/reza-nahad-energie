@@ -65,7 +65,7 @@ export function ContactForm() {
     } catch (err) {
       setStatus("idle");
       if (testMode && err instanceof ContactError && err.code === "missing_key") setFormError("Testmodus: In der Vorschau ist noch kein Resend-API-Key hinterlegt (Secret RESEND_API_KEY).");
-      else if (testMode && err instanceof ContactError && err.code === "resend_failed") setFormError(`Testmodus: Resend hat den Versand abgelehnt (Status ${err.detail ? "– " + err.detail : ""}).`);
+      else if (testMode && err instanceof ContactError && err.code === "resend_failed") setFormError(`Testmodus: Resend hat den Versand abgelehnt. ${err.detail ?? ""}`);
       else if (err instanceof ContactError && err.status === 429) setFormError("Sie haben in kurzer Zeit mehrere Anfragen gesendet. Bitte versuchen Sie es in einigen Minuten erneut oder rufen Sie uns an.");
       else if (err instanceof ContactError && err.status === 422 && err.fields) setErrors(err.fields as Partial<Record<Fields, string>>);
       else setFormError(`Ihre Anfrage konnte leider nicht gesendet werden. Bitte rufen Sie uns an unter ${phoneDisplay} oder schreiben Sie eine E-Mail.`);

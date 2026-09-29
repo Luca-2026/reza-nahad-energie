@@ -14,7 +14,7 @@
 - Site pages follow SEO plan B.3; service pages are data-driven from src/lib/site.ts via /leistungen/$slug — one source for titles, H1 and links.
 - Shared header/footer live in SiteLayout, mounted in __root — every page gets the same navigation.
 - Every public page is prerendered to static HTML (vite.config.ts `pages` list) so dist/client can be FTP-uploaded to STRATO Apache; keep the list, sitemap.xml and .htaccess in sync.
-- No server functions or server-only loaders: the live site has no Node server; the contact form posts to public/api/contact.php (PHP on STRATO), mocked in the preview via src/lib/contactApi.ts.
+- No server functions or server-only loaders for the live site: it has no Node server; the contact form posts to public/api/contact.php (PHP on STRATO). Sole exception: src/routes/api/preview-contact-test.ts, a preview-only Resend test route (RESEND_API_KEY secret) that is absent from the static STRATO export.
 - scripts/package-strato.py builds the FTP ZIP and copies Lovable Asset images into it under their original /__l5e/ paths.
 - Responsive page hierarchy is centralized in SiteLayout and semantic CSS utilities; this keeps all static routes visually consistent on mobile and desktop.
 - Cookie choice is stored only in the first-party `nahad_cookie_consent` cookie; no analytics or marketing scripts are loaded.
