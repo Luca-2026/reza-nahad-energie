@@ -21,6 +21,7 @@ import { Route as NotdienstRouteImport } from './routes/notdienst'
 import { Route as ReferenzenRouteImport } from './routes/referenzen'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
 import { Route as WiderrufsbelehrungRouteImport } from './routes/widerrufsbelehrung'
+import { Route as ApiPreviewContactTestRouteImport } from './routes/api/preview-contact-test'
 import { Route as LeistungenIndexRouteImport } from './routes/leistungen.index'
 import { Route as LeistungenSlugRouteImport } from './routes/leistungen.$slug'
 
@@ -84,6 +85,11 @@ const WiderrufsbelehrungRoute = WiderrufsbelehrungRouteImport.update({
   path: '/widerrufsbelehrung',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPreviewContactTestRoute = ApiPreviewContactTestRouteImport.update({
+  id: '/api/preview-contact-test',
+  path: '/api/preview-contact-test',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LeistungenIndexRoute = LeistungenIndexRouteImport.update({
   id: '/leistungen/',
   path: '/leistungen/',
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/referenzen': typeof ReferenzenRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/widerrufsbelehrung': typeof WiderrufsbelehrungRoute
+  '/api/preview-contact-test': typeof ApiPreviewContactTestRoute
   '/leistungen/$slug': typeof LeistungenSlugRoute
   '/leistungen/': typeof LeistungenIndexRoute
 }
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/referenzen': typeof ReferenzenRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/widerrufsbelehrung': typeof WiderrufsbelehrungRoute
+  '/api/preview-contact-test': typeof ApiPreviewContactTestRoute
   '/leistungen/$slug': typeof LeistungenSlugRoute
   '/leistungen': typeof LeistungenIndexRoute
 }
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/referenzen': typeof ReferenzenRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/widerrufsbelehrung': typeof WiderrufsbelehrungRoute
+  '/api/preview-contact-test': typeof ApiPreviewContactTestRoute
   '/leistungen/$slug': typeof LeistungenSlugRoute
   '/leistungen/': typeof LeistungenIndexRoute
 }
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/referenzen'
     | '/ueber-uns'
     | '/widerrufsbelehrung'
+    | '/api/preview-contact-test'
     | '/leistungen/$slug'
     | '/leistungen/'
   fileRoutesByTo: FileRoutesByTo
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/referenzen'
     | '/ueber-uns'
     | '/widerrufsbelehrung'
+    | '/api/preview-contact-test'
     | '/leistungen/$slug'
     | '/leistungen'
   id:
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/referenzen'
     | '/ueber-uns'
     | '/widerrufsbelehrung'
+    | '/api/preview-contact-test'
     | '/leistungen/$slug'
     | '/leistungen/'
   fileRoutesById: FileRoutesById
@@ -208,6 +220,7 @@ export interface RootRouteChildren {
   ReferenzenRoute: typeof ReferenzenRoute
   UeberUnsRoute: typeof UeberUnsRoute
   WiderrufsbelehrungRoute: typeof WiderrufsbelehrungRoute
+  ApiPreviewContactTestRoute: typeof ApiPreviewContactTestRoute
   LeistungenSlugRoute: typeof LeistungenSlugRoute
   LeistungenIndexRoute: typeof LeistungenIndexRoute
 }
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WiderrufsbelehrungRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/preview-contact-test': {
+      id: '/api/preview-contact-test'
+      path: '/api/preview-contact-test'
+      fullPath: '/api/preview-contact-test'
+      preLoaderRoute: typeof ApiPreviewContactTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/leistungen/': {
       id: '/leistungen/'
       path: '/leistungen'
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReferenzenRoute: ReferenzenRoute,
   UeberUnsRoute: UeberUnsRoute,
   WiderrufsbelehrungRoute: WiderrufsbelehrungRoute,
+  ApiPreviewContactTestRoute: ApiPreviewContactTestRoute,
   LeistungenSlugRoute: LeistungenSlugRoute,
   LeistungenIndexRoute: LeistungenIndexRoute,
 }
