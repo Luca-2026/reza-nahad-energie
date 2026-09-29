@@ -37,18 +37,18 @@ function Page() {
   return (
     <>
       <Breadcrumbs items={[{ label: "Notdienst" }]} />
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
-          <p className="text-sm font-extrabold uppercase text-accent">Notdienst & Störung</p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-extrabold leading-tight md:text-5xl">Elektro-Notdienst in Düsseldorf – wenn der Strom weg ist</h1>
+      <section className="border-b border-border bg-secondary">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
+          <p className="eyebrow">Notdienst & Störung</p>
+          <h1 className="mt-4 max-w-4xl text-[2rem] font-extrabold leading-[1.12] text-primary sm:text-4xl md:text-5xl">Elektro-Notdienst in Düsseldorf – wenn der Strom weg ist</h1>
           <Button size="lg" className="mt-8 h-auto py-4 text-xl" asChild><a href={phoneHref}><Phone className="size-6" aria-hidden="true" />{phoneDisplay}</a></Button>
-          <p className="mt-3 text-sm font-semibold text-primary-foreground/80">Echter Düsseldorfer Meisterbetrieb, Vogelsanger Weg 38</p>
-          <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80">Sicherung fliegt immer wieder raus, der FI lässt sich nicht einschalten, eine Steckdose riecht verschmort oder die halbe Wohnung ist dunkel? Rufen Sie an – wir sagen Ihnen am Telefon, was Sie selbst prüfen können, und kommen, wenn es nötig ist. Ohne Callcenter, ohne „ab“-Preise: Sie sprechen mit unserem Betrieb, und die Zuschläge stehen hier.</p>
+          <p className="mt-3 text-sm font-semibold text-primary">Düsseldorfer Meisterbetrieb, Vogelsanger Weg 38</p>
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">Sicherung fliegt immer wieder raus, der FI lässt sich nicht einschalten, eine Steckdose riecht verschmort oder die halbe Wohnung ist dunkel? Rufen Sie an – wir sagen Ihnen am Telefon, was Sie selbst prüfen können, und kommen, wenn es nötig ist. Ohne Callcenter, ohne „ab“-Preise: Sie sprechen mit unserem Betrieb, und die Zuschläge stehen hier.</p>
         </div>
       </section>
 
       <Section>
-        <div className="rounded-md border-2 border-destructive bg-card p-6">
+        <div className="border-l-4 border-destructive bg-secondary p-5 sm:p-6">
           <h2 className="flex items-center gap-2 text-xl font-extrabold text-destructive"><TriangleAlert className="size-6" aria-hidden="true" />Gefahr? Erst 112.</h2>
           <p className="mt-2">Bei Brand, Rauchentwicklung oder Personen unter Strom: sofort <a href="tel:112" className="font-bold underline">112</a> anrufen, Hauptsicherung ausschalten, wenn gefahrlos möglich. Danach rufen Sie uns.</p>
         </div>
@@ -63,13 +63,13 @@ function Page() {
             <h2 className="text-2xl font-extrabold text-primary md:text-3xl">Was wir im Störungsdienst machen</h2>
             <ul className="mt-6 space-y-3">{["Fehlersuche bei Stromausfall, auslösendem FI oder Sicherungsautomat", "Provisorische Absicherung defekter Leitungen, Steckdosen, Verteilungen", "Austausch defekter Schutzschalter, Steckdosen, Schalter, Klemmstellen", "Wiederinbetriebnahme nach Wasserschaden, wenn gefahrlos möglich", "Dokumentation des Schadens für Ihre Versicherung", "Terminvorschlag für die dauerhafte Reparatur, falls nötig"].map((t) => <li key={t} className="flex gap-3"><Check className="mt-0.5 size-5 shrink-0 text-success" aria-hidden="true" />{t}</li>)}</ul>
           </div>
-          <div className="rounded-md border-2 border-accent bg-card p-6">
+           <div className="border-l-4 border-accent bg-card p-5 sm:p-6">
             <h2 className="font-display text-xl font-extrabold text-primary">Kosten im Störungsdienst (inkl. MwSt., vor dem Einsatz genannt)</h2>
             <dl className="mt-4 divide-y divide-border tabular-nums">
-              <div className="flex justify-between gap-4 py-2"><dt>Stundensatz (innerhalb der Bürozeiten)</dt><dd className="font-extrabold text-primary">{prices.hourly}</dd></div>
-              <div className="flex justify-between gap-4 py-2"><dt>Anfahrt Düsseldorf</dt><dd className="font-extrabold text-primary">{prices.travel}</dd></div>
-              <div className="flex justify-between gap-4 py-2"><dt>Störungsdienst außerhalb der Bürozeiten</dt><dd className="font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
-              <div className="flex justify-between gap-4 py-2"><dt>Material</dt><dd className="text-right font-semibold text-primary">nach Aufwand, vor dem Einbau genannt</dd></div>
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-2"><dt>Stundensatz (innerhalb der Bürozeiten)</dt><dd className="font-extrabold text-primary">{prices.hourly}</dd></div>
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-2"><dt>Anfahrt Düsseldorf</dt><dd className="font-extrabold text-primary">{prices.travel}</dd></div>
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-2"><dt>Störungsdienst außerhalb der Bürozeiten</dt><dd className="font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
+              <div className="grid gap-2 py-2 sm:grid-cols-[minmax(0,1fr)_auto]"><dt>Material</dt><dd className="font-semibold text-primary sm:text-right">nach Aufwand, vor dem Einbau genannt</dd></div>
             </dl>
             <p className="mt-3 text-sm text-muted-foreground">Wir nennen Ihnen am Telefon die voraussichtlichen Kosten. Es gibt keine Pauschale, die Sie erst nach dem Einsatz erfahren.</p>
           </div>

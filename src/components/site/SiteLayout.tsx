@@ -237,7 +237,6 @@ export function CtaBand({ title = "Was steht bei Ihnen an?", text = "Schreiben S
            <strong className="block text-primary-foreground">Nahad Energie Elektrotechnik</strong>
           Vogelsanger Weg 38<br />40470 Düsseldorf<br /><a href={phoneHref} className="font-semibold text-primary">{phoneDisplay}</a>
         </address>
-      </div>
        </div>
      </section>
   );
