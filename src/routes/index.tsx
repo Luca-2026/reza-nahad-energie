@@ -33,49 +33,50 @@ function Index() {
   return (
     <>
       <NoticeBar />
-      <section className="overflow-hidden bg-primary text-primary-foreground">
-        <div className="mx-auto grid min-h-[620px] max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1.05fr_.95fr] md:px-6 md:py-20">
-          <div>
-            <div className="mb-5 flex items-center gap-2 text-sm font-bold text-accent"><MapPin className="size-4" aria-hidden="true" /> Elektrotechnik-Meisterbetrieb · Düsseldorf-Mörsenbroich</div>
-            <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.08] sm:text-5xl">Elektriker in Düsseldorf – Ihr Meisterbetrieb für Elektroinstallation, Photovoltaik und Wallbox</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/80">Von der defekten Steckdose bis zur PV-Anlage mit Speicher und Ladepunkt: Wir planen, installieren und melden beim Netzbetreiber an – persönlich geführt von Elektrotechnikermeister Reza Nahad, mit Preisen, die Sie vor dem Auftrag kennen.</p>
+      <section className="overflow-hidden bg-secondary">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 lg:min-h-[640px] lg:grid-cols-[1.04fr_.96fr] lg:px-6 lg:py-18">
+          <div className="min-w-0">
+            <div className="mb-5 flex items-start gap-2 text-xs font-extrabold uppercase text-accent-strong sm:text-sm"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" /> Elektrotechnik-Meisterbetrieb · Düsseldorf-Mörsenbroich</div>
+            <h1 className="max-w-3xl text-[2.25rem] font-extrabold leading-[1.08] text-primary sm:text-5xl lg:text-[3.5rem]">Elektriker in Düsseldorf – Ihr Meisterbetrieb für Elektroinstallation, Photovoltaik und Wallbox</h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Von der defekten Steckdose bis zur PV-Anlage mit Speicher und Ladepunkt: Wir planen, installieren und melden beim Netzbetreiber an – persönlich geführt von Elektrotechnikermeister Reza Nahad, mit Preisen, die Sie vor dem Auftrag kennen.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button size="lg" asChild><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button>
               <Button size="lg" variant="outline" asChild><a href={phoneHref}><Phone className="size-5" aria-hidden="true" /> {phoneDisplay} anrufen</a></Button>
             </div>
-            <ul className="mt-8 grid gap-3 text-sm font-semibold text-primary-foreground/90 sm:grid-cols-2">
+            <ul className="mt-8 grid gap-3 border-t border-border pt-6 text-sm font-semibold text-foreground sm:grid-cols-2">
               <li className="flex items-center gap-2"><BadgeCheck className="size-5 shrink-0 text-accent" aria-hidden="true" />Meisterbetrieb, Inhaber persönlich vor Ort</li>
               <li className="flex items-center gap-2"><Landmark className="size-5 shrink-0 text-accent" aria-hidden="true" />Eingetragen in die Handwerksrolle der HWK Düsseldorf</li>
               <li className="flex items-center gap-2"><PlugZap className="size-5 shrink-0 text-accent" aria-hidden="true" />Zugelassen bei der Netzgesellschaft Düsseldorf</li>
               <li className="flex items-center gap-2"><Clock className="size-5 shrink-0 text-accent" aria-hidden="true" />Rückmeldung in der Regel innerhalb eines Werktags</li>
             </ul>
           </div>
-          <figure className="relative mx-auto w-full max-w-md md:max-w-none">
-            <div className="absolute -left-5 top-8 h-full w-full rounded-md border-2 border-accent" aria-hidden="true" />
-            <img src={workAsset.url} alt="Elektrotechnikermeister Reza Nahad prüft in Düsseldorf die Elektrik einer geöffneten Anlage" width="768" height="1024" className="relative aspect-[4/5] w-full rounded-md object-cover" fetchPriority="high" />
-            <figcaption className="relative mt-3 text-sm text-primary-foreground/75">Reza Nahad, Elektrotechnikermeister</figcaption>
+          <figure className="relative mx-auto w-full max-w-md lg:max-w-none">
+            <div className="absolute -bottom-3 -left-3 top-3 w-1 bg-accent" aria-hidden="true" />
+            <img src={workAsset.url} alt="Elektrotechnikermeister Reza Nahad prüft in Düsseldorf die Elektrik einer geöffneten Anlage" width="768" height="1024" className="relative aspect-[4/5] max-h-[560px] w-full rounded-md object-cover" fetchPriority="high" />
+            <figcaption className="relative mt-3 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister</figcaption>
           </figure>
         </div>
       </section>
 
-      <section className="border-b border-primary-foreground/15 bg-primary text-primary-foreground" aria-label="Unsere Zusagen">
-        <ul className="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-8 gap-y-2 px-4 py-4 text-sm font-bold md:px-6">
+      <section className="border-y border-border bg-background" aria-label="Unsere Zusagen">
+        <ul className="mx-auto grid max-w-6xl gap-3 px-4 py-5 text-xs font-bold text-primary sm:grid-cols-2 md:px-6 lg:grid-cols-5">
           {["Meisterbetrieb", "Festpreis-Angebot nach Vor-Ort-Termin", "Prüfprotokoll zu jeder Installation", "Preise inkl. MwSt. – vor dem Auftrag", "Düsseldorf und 25 km Umkreis"].map((t) => <li key={t} className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />{t}</li>)}
         </ul>
       </section>
 
       <Section>
-        <h2 className="text-3xl font-extrabold text-primary md:text-4xl">Elektrotechnik für Haus, Wohnung und Gewerbe</h2>
+        <p className="eyebrow">Leistungen</p>
+        <h2 className="section-heading mt-3">Elektrotechnik für Haus, Wohnung und Gewerbe</h2>
         <p className="mt-4 max-w-3xl text-muted-foreground">Ein Ansprechpartner für alles, was mit Strom im Gebäude zu tun hat – von der klassischen Installation bis zur Energietechnik, die in den nächsten Jahren in fast jedes Haus kommt.</p>
-        <div className="mt-10 grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => { const Icon = serviceIcons[s.icon]; return (
-            <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="group bg-card p-6 hover:bg-secondary">
+            <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="group border-b border-border p-5 transition-colors hover:bg-secondary sm:border-r lg:p-6">
               <Icon className="size-6 text-accent-strong" aria-hidden="true" />
               <h3 className="mt-3 text-lg font-extrabold text-card-foreground group-hover:text-primary">{s.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
             </Link>
           ); })}
-          <Link to="/notdienst" className="group bg-accent p-6 text-accent-foreground">
+          <Link to="/notdienst" className="group border-b border-border bg-accent p-5 text-accent-foreground sm:border-r lg:p-6">
             <Siren className="size-6" aria-hidden="true" />
             <h3 className="mt-3 text-lg font-extrabold">Notdienst</h3>
             <p className="mt-2 text-sm">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>
@@ -85,7 +86,8 @@ function Index() {
       </Section>
 
       <Section muted>
-        <h2 className="max-w-4xl text-3xl font-extrabold text-primary md:text-4xl">Strom erzeugen, speichern, laden – und beim Netzbetreiber richtig angemeldet</h2>
+        <p className="eyebrow">Energietechnik</p>
+        <h2 className="section-heading mt-3 max-w-4xl">Strom erzeugen, speichern, laden – und beim Netzbetreiber richtig angemeldet</h2>
         <p className="mt-4 max-w-3xl text-muted-foreground">Photovoltaik, Wallbox und Wärmepumpe hängen am selben Punkt: Ihrem Zählerschrank. Wer die drei getrennt beauftragt, zahlt oft doppelt und wundert sich später über Anmeldeprobleme. Wir denken den Zählerplatz von Anfang an mit, übernehmen die Anmeldung bei der Netzgesellschaft Düsseldorf und richten steuerbare Verbraucher nach § 14a EnWG so ein, dass Sie den reduzierten Netzentgelt-Beitrag bekommen.</p>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {[
@@ -93,7 +95,7 @@ function Index() {
             { icon: PlugZap, t: "Wallbox", d: "Anmeldung ab 3,6 kW, ab 4,2 kW steuerbar nach § 14a EnWG: 110–190 € Netzentgelt-Rabatt pro Jahr (Modul 1) sind drin.", slug: "wallbox" },
             { icon: Thermometer, t: "Wärmepumpe", d: "Zuleitung, Absicherung und Anmeldung – abgestimmt mit Ihrem Heizungsbauer, bevor das Gerät geliefert wird.", slug: "waermepumpe-elektroanschluss" },
           ].map(({ icon: Icon, t, d, slug }) => (
-            <Link key={slug} to="/leistungen/$slug" params={{ slug }} className="rounded-md border border-border bg-card p-6 hover:border-primary">
+            <Link key={slug} to="/leistungen/$slug" params={{ slug }} className="group border-t-2 border-accent bg-card p-6 transition-colors hover:bg-background">
               <Icon className="size-6 text-accent-strong" aria-hidden="true" />
               <h3 className="mt-3 font-extrabold text-primary">{t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
@@ -104,20 +106,22 @@ function Index() {
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-extrabold text-primary md:text-4xl">Warum Kunden in Düsseldorf mit uns arbeiten</h2>
+        <p className="eyebrow">Arbeitsweise</p>
+        <h2 className="section-heading mt-3">Warum Kunden in Düsseldorf mit uns arbeiten</h2>
         <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {why.map(({ icon: Icon, t, d }) => <li key={t}><Icon className="size-6 text-accent-strong" aria-hidden="true" /><h3 className="mt-3 font-extrabold text-primary">{t}</h3><p className="mt-2 text-sm text-muted-foreground">{d}</p></li>)}
+          {why.map(({ icon: Icon, t, d }) => <li key={t} className="border-t border-border pt-5"><Icon className="size-6 text-accent-strong" aria-hidden="true" /><h3 className="mt-3 font-extrabold text-primary">{t}</h3><p className="mt-2 text-sm text-muted-foreground">{d}</p></li>)}
         </ul>
       </Section>
 
       <Section muted>
-        <h2 className="text-3xl font-extrabold text-primary md:text-4xl">So läuft ein Auftrag bei uns ab</h2>
+        <p className="eyebrow">Ablauf</p>
+        <h2 className="section-heading mt-3">So läuft ein Auftrag bei uns ab</h2>
         <StepList steps={generalSteps} />
       </Section>
 
       <Section>
         <div className="grid items-center gap-10 md:grid-cols-2">
-          <div><h2 className="text-3xl font-extrabold text-primary">Was kostet ein Elektriker in Düsseldorf?</h2><p className="mt-4 text-muted-foreground">Stundensatz, Anfahrt und Zuschläge stehen hier – vor dem Auftrag. Für Projekte erhalten Sie nach dem Vor-Ort-Termin ein schriftliches Festpreis-Angebot.</p></div>
+          <div><p className="eyebrow">Preistransparenz</p><h2 className="section-heading mt-3">Was kostet ein Elektriker in Düsseldorf?</h2><p className="mt-4 text-muted-foreground">Stundensatz, Anfahrt und Zuschläge stehen hier – vor dem Auftrag. Für Projekte erhalten Sie nach dem Vor-Ort-Termin ein schriftliches Festpreis-Angebot.</p></div>
           <PriceBox />
         </div>
       </Section>
@@ -126,7 +130,7 @@ function Index() {
         <div className="grid items-center gap-12 md:grid-cols-2">
           <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad am Schreibtisch im Büro von Nahad Energie in Düsseldorf-Mörsenbroich" width="1366" height="768" loading="lazy" className="aspect-[4/3] w-full rounded-md object-cover" />
           <div>
-            <h2 className="text-3xl font-extrabold text-primary md:text-4xl">Reza Nahad – Elektrotechnikermeister aus Düsseldorf</h2>
+            <p className="eyebrow">Persönlich geführt</p><h2 className="section-heading mt-3">Reza Nahad – Elektrotechnikermeister aus Düsseldorf</h2>
             <p className="mt-5 text-muted-foreground">Ich habe meinen eigenen Betrieb in Düsseldorf gegründet, weil ich Elektrik so machen wollte, wie ich sie mir selbst im Haus wünsche: ordentlich verlegt, sauber beschriftet, geprüft und erklärt. Mein Betrieb sitzt am Vogelsanger Weg in Mörsenbroich; die meisten Kunden erreichen wir in 20 Minuten.</p>
             <Button variant="dark" className="mt-8" asChild><Link to="/ueber-uns">Mehr über uns</Link></Button>
           </div>
@@ -135,19 +139,19 @@ function Index() {
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1fr_.8fr] md:px-6 md:py-20">
-          <div><h2 className="text-3xl font-extrabold md:text-4xl">Baustrom für Bauvorhaben</h2><p className="mt-5 max-w-xl text-primary-foreground/80">Für Baustellen und temporäre Vorhaben stellen wir eine passende elektrische Versorgung mit eigenem Baustromverteiler bereit.</p><Button className="mt-8" asChild><Link to="/leistungen/$slug" params={{ slug: "gewerbe-hausverwaltung" }}>Gewerbe & Hausverwaltungen</Link></Button></div>
+          <div><p className="eyebrow text-accent">Gewerbe & Bau</p><h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Baustrom für Bauvorhaben</h2><p className="mt-5 max-w-xl text-primary-foreground/80">Für Baustellen und temporäre Vorhaben stellen wir eine passende elektrische Versorgung mit eigenem Baustromverteiler bereit.</p><Button className="mt-8" asChild><Link to="/leistungen/$slug" params={{ slug: "gewerbe-hausverwaltung" }}>Gewerbe & Hausverwaltungen</Link></Button></div>
           <img src={distributionAsset.url} alt="Orangefarbener Baustromverteiler mit Nahad-Energie-Beschriftung auf einer Baustelle in Düsseldorf" width="768" height="922" loading="lazy" className="mx-auto aspect-[4/5] max-h-[480px] w-full rounded-md object-contain" />
         </div>
       </section>
 
       <Section>
-        <h2 className="text-3xl font-extrabold text-primary md:text-4xl">Unser Einsatzgebiet: ganz Düsseldorf und das Umland</h2>
+        <p className="eyebrow">Vor Ort</p><h2 className="section-heading mt-3">Unser Einsatzgebiet: ganz Düsseldorf und das Umland</h2>
         <p className="mt-4 max-w-3xl text-muted-foreground">Vom Standort Mörsenbroich aus sind wir schnell in Rath, Derendorf, Unterrath, Düsseltal, Grafenberg, Pempelfort und Golzheim. Wir arbeiten in allen Düsseldorfer Stadtteilen – von Kaiserswerth und Wittlaer im Norden über Oberkassel, Flingern und Gerresheim bis Benrath und Urdenbach im Süden – sowie in Ratingen, Neuss, Meerbusch, Erkrath, Hilden, Kaarst und Langenfeld.</p>
         <ul className="mt-6 flex flex-wrap gap-2">{areas.map((a) => <li key={a}><Link to="/einsatzgebiet" className="inline-block rounded-md bg-secondary px-3 py-1.5 text-sm font-semibold text-primary hover:bg-accent hover:text-accent-foreground">{a}</Link></li>)}</ul>
       </Section>
 
       <Section muted>
-        <h2 className="text-3xl font-extrabold text-primary md:text-4xl">Häufige Fragen</h2>
+        <p className="eyebrow">Kurz erklärt</p><h2 className="section-heading mt-3">Häufige Fragen</h2>
         <FaqList faqs={homeFaqs} />
       </Section>
       <CtaBand />
