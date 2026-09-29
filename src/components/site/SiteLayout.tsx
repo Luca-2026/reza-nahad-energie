@@ -3,13 +3,12 @@ import { ArrowRight, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/nahad-energie-logo.png.asset.json";
-import { phoneDisplay, phoneHref, prices, services, whatsappHref } from "@/lib/site";
+import { phoneDisplay, phoneHref, prices, services, standDate, whatsappHref, type QA } from "@/lib/site";
 
 const nav = [
   { to: "/leistungen", label: "Leistungen" },
   { to: "/notdienst", label: "Notdienst" },
   { to: "/ueber-uns", label: "Über uns" },
-  { to: "/referenzen", label: "Referenzen" },
   { to: "/einsatzgebiet", label: "Einsatzgebiet" },
   { to: "/kontakt", label: "Kontakt" },
 ] as const;
@@ -66,44 +65,3 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   );
 }
 
-export function PageHero({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
-  return (
-    <section className="bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
-        <p className="text-sm font-extrabold uppercase text-accent">{eyebrow}</p>
-        <h1 className="mt-3 max-w-4xl text-3xl font-extrabold leading-tight md:text-5xl">{title}</h1>
-        {children && <div className="mt-5 max-w-2xl text-lg text-primary-foreground/80">{children}</div>}
-      </div>
-    </section>
-  );
-}
-
-export function Section({ children, muted = false }: { children: ReactNode; muted?: boolean }) {
-  return <section className={muted ? "bg-secondary py-14 md:py-20" : "bg-background py-14 md:py-20"}><div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div></section>;
-}
-
-export function CtaBand({ text = "Schildern Sie kurz Ihr Vorhaben – wir melden uns persönlich." }: { text?: string }) {
-  return (
-    <Section muted>
-      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-        <div><h2 className="text-2xl font-extrabold text-primary">Sprechen Sie direkt mit dem Meister</h2><p className="mt-2 text-muted-foreground">{text}</p></div>
-        <div className="flex flex-col gap-3 sm:flex-row"><Button size="lg" asChild><Link to="/kontakt">Anfrage an Nahad Energie <ArrowRight className="size-5" aria-hidden="true" /></Link></Button><Button size="lg" variant="outline" asChild><a href={phoneHref}><Phone className="size-5" aria-hidden="true" />{phoneDisplay}</a></Button></div>
-      </div>
-    </Section>
-  );
-}
-
-export function PriceBox() {
-  return (
-    <div className="rounded-md border-2 border-accent bg-card p-6">
-      <h2 className="font-display text-xl font-extrabold text-primary">Preise – transparent und inkl. MwSt.</h2>
-      <dl className="mt-4 divide-y divide-border tabular-nums">
-        <div className="flex justify-between gap-4 py-2"><dt>Stundensatz Elektriker</dt><dd className="font-extrabold text-primary">{prices.hourly}</dd></div>
-        <div className="flex justify-between gap-4 py-2"><dt>Anfahrt innerhalb Düsseldorfs</dt><dd className="font-extrabold text-primary">{prices.travel}</dd></div>
-        <div className="flex justify-between gap-4 py-2"><dt>Notdienst außerhalb der Geschäftszeiten</dt><dd className="font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
-        <div className="flex justify-between gap-4 py-2"><dt>Projekte</dt><dd className="text-right font-semibold text-primary">Festpreis nach Vor-Ort-Termin</dd></div>
-      </dl>
-      <p className="mt-3 text-xs text-muted-foreground">Alle Preise inkl. 19 % MwSt.</p>
-    </div>
-  );
-}
