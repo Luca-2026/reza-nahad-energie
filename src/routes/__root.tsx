@@ -11,22 +11,24 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { areaServed, jsonLd } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Seite nicht gefunden</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          Diese Seite gibt es nicht oder sie wurde verschoben.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Zur Startseite
           </Link>
         </div>
       </div>
@@ -90,6 +92,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
+    scripts: [
+      jsonLd({
+        "@type": "Electrician",
+        name: "Nahad Energie Elektrotechnik",
+        telephone: "+49 211 54268296",
+        founder: { "@type": "Person", name: "Reza Nahad", jobTitle: "Elektrotechnikermeister" },
+        address: { "@type": "PostalAddress", streetAddress: "Vogelsanger Weg 38", postalCode: "40470", addressLocality: "Düsseldorf", addressCountry: "DE" },
+        areaServed: areaServed.map((name) => ({ "@type": "City", name })),
+        priceRange: "€€",
+      }),
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -117,7 +130,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SiteLayout>
+        <Outlet />
+      </SiteLayout>
     </QueryClientProvider>
   );
 }

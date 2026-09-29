@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgbRouteImport } from './routes/agb'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
+import { Route as EinsatzgebietRouteImport } from './routes/einsatzgebiet'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as KarriereRouteImport } from './routes/karriere'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as NotdienstRouteImport } from './routes/notdienst'
+import { Route as ReferenzenRouteImport } from './routes/referenzen'
+import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as LeistungenIndexRouteImport } from './routes/leistungen.index'
+import { Route as LeistungenSlugRouteImport } from './routes/leistungen.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgbRoute = AgbRouteImport.update({
+  id: '/agb',
+  path: '/agb',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EinsatzgebietRoute = EinsatzgebietRouteImport.update({
+  id: '/einsatzgebiet',
+  path: '/einsatzgebiet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KarriereRoute = KarriereRouteImport.update({
+  id: '/karriere',
+  path: '/karriere',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotdienstRoute = NotdienstRouteImport.update({
+  id: '/notdienst',
+  path: '/notdienst',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferenzenRoute = ReferenzenRouteImport.update({
+  id: '/referenzen',
+  path: '/referenzen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UeberUnsRoute = UeberUnsRouteImport.update({
+  id: '/ueber-uns',
+  path: '/ueber-uns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeistungenIndexRoute = LeistungenIndexRouteImport.update({
+  id: '/leistungen/',
+  path: '/leistungen/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeistungenSlugRoute = LeistungenSlugRouteImport.update({
+  id: '/leistungen/$slug',
+  path: '/leistungen/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/einsatzgebiet': typeof EinsatzgebietRoute
+  '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/karriere': typeof KarriereRoute
+  '/kontakt': typeof KontaktRoute
+  '/notdienst': typeof NotdienstRoute
+  '/referenzen': typeof ReferenzenRoute
+  '/ueber-uns': typeof UeberUnsRoute
+  '/leistungen/$slug': typeof LeistungenSlugRoute
+  '/leistungen/': typeof LeistungenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/einsatzgebiet': typeof EinsatzgebietRoute
+  '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/karriere': typeof KarriereRoute
+  '/kontakt': typeof KontaktRoute
+  '/notdienst': typeof NotdienstRoute
+  '/referenzen': typeof ReferenzenRoute
+  '/ueber-uns': typeof UeberUnsRoute
+  '/leistungen/$slug': typeof LeistungenSlugRoute
+  '/leistungen': typeof LeistungenIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/einsatzgebiet': typeof EinsatzgebietRoute
+  '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/karriere': typeof KarriereRoute
+  '/kontakt': typeof KontaktRoute
+  '/notdienst': typeof NotdienstRoute
+  '/referenzen': typeof ReferenzenRoute
+  '/ueber-uns': typeof UeberUnsRoute
+  '/leistungen/$slug': typeof LeistungenSlugRoute
+  '/leistungen/': typeof LeistungenIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agb'
+    | '/datenschutz'
+    | '/einsatzgebiet'
+    | '/faq'
+    | '/impressum'
+    | '/karriere'
+    | '/kontakt'
+    | '/notdienst'
+    | '/referenzen'
+    | '/ueber-uns'
+    | '/leistungen/$slug'
+    | '/leistungen/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agb'
+    | '/datenschutz'
+    | '/einsatzgebiet'
+    | '/faq'
+    | '/impressum'
+    | '/karriere'
+    | '/kontakt'
+    | '/notdienst'
+    | '/referenzen'
+    | '/ueber-uns'
+    | '/leistungen/$slug'
+    | '/leistungen'
+  id:
+    | '__root__'
+    | '/'
+    | '/agb'
+    | '/datenschutz'
+    | '/einsatzgebiet'
+    | '/faq'
+    | '/impressum'
+    | '/karriere'
+    | '/kontakt'
+    | '/notdienst'
+    | '/referenzen'
+    | '/ueber-uns'
+    | '/leistungen/$slug'
+    | '/leistungen/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgbRoute: typeof AgbRoute
+  DatenschutzRoute: typeof DatenschutzRoute
+  EinsatzgebietRoute: typeof EinsatzgebietRoute
+  FaqRoute: typeof FaqRoute
+  ImpressumRoute: typeof ImpressumRoute
+  KarriereRoute: typeof KarriereRoute
+  KontaktRoute: typeof KontaktRoute
+  NotdienstRoute: typeof NotdienstRoute
+  ReferenzenRoute: typeof ReferenzenRoute
+  UeberUnsRoute: typeof UeberUnsRoute
+  LeistungenSlugRoute: typeof LeistungenSlugRoute
+  LeistungenIndexRoute: typeof LeistungenIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agb': {
+      id: '/agb'
+      path: '/agb'
+      fullPath: '/agb'
+      preLoaderRoute: typeof AgbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/einsatzgebiet': {
+      id: '/einsatzgebiet'
+      path: '/einsatzgebiet'
+      fullPath: '/einsatzgebiet'
+      preLoaderRoute: typeof EinsatzgebietRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/karriere': {
+      id: '/karriere'
+      path: '/karriere'
+      fullPath: '/karriere'
+      preLoaderRoute: typeof KarriereRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notdienst': {
+      id: '/notdienst'
+      path: '/notdienst'
+      fullPath: '/notdienst'
+      preLoaderRoute: typeof NotdienstRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/referenzen': {
+      id: '/referenzen'
+      path: '/referenzen'
+      fullPath: '/referenzen'
+      preLoaderRoute: typeof ReferenzenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ueber-uns': {
+      id: '/ueber-uns'
+      path: '/ueber-uns'
+      fullPath: '/ueber-uns'
+      preLoaderRoute: typeof UeberUnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leistungen/': {
+      id: '/leistungen/'
+      path: '/leistungen'
+      fullPath: '/leistungen/'
+      preLoaderRoute: typeof LeistungenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leistungen/$slug': {
+      id: '/leistungen/$slug'
+      path: '/leistungen/$slug'
+      fullPath: '/leistungen/$slug'
+      preLoaderRoute: typeof LeistungenSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgbRoute: AgbRoute,
+  DatenschutzRoute: DatenschutzRoute,
+  EinsatzgebietRoute: EinsatzgebietRoute,
+  FaqRoute: FaqRoute,
+  ImpressumRoute: ImpressumRoute,
+  KarriereRoute: KarriereRoute,
+  KontaktRoute: KontaktRoute,
+  NotdienstRoute: NotdienstRoute,
+  ReferenzenRoute: ReferenzenRoute,
+  UeberUnsRoute: UeberUnsRoute,
+  LeistungenSlugRoute: LeistungenSlugRoute,
+  LeistungenIndexRoute: LeistungenIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
