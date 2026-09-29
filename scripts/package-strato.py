@@ -34,7 +34,8 @@ except ImportError:
     Image = None
 
 for ref in sorted(refs):
-    data = urllib.request.urlopen(ASSET_ORIGIN + ref, timeout=60).read()
+    req = urllib.request.Request(ASSET_ORIGIN + ref, headers={"User-Agent": "curl/8.0"})
+    data = urllib.request.urlopen(req, timeout=60).read()
     name = ref.rsplit("/", 1)[1]
     if Image is not None and name.lower().endswith((".png", ".jpg", ".jpeg")):
         img = Image.open(io.BytesIO(data))
