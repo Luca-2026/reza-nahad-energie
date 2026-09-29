@@ -9,7 +9,12 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Use the existing TanStack Start application structure; the hosted preview requires it and all pages stay within that routing system.
-- Keep brand media as Lovable Assets pointers, except the derived favicon; this avoids committing large uploaded binaries.
-- Site pages follow SEO plan B.3; service pages are data-driven from src/lib/site.ts via /leistungen/$slug — one source for titles, H1 and links.
-- Shared header/footer live in SiteLayout, mounted in __root — every page gets the same navigation.
+# AGENTS.md
+
+# Stack (verbindlich)
+- Klassischer React-18 + Vite-5 + TypeScript + Tailwind-3 + shadcn/ui + react-router-dom-6-Stack (BrowserRouter). Statische Auslieferung als dist/ auf Apache-Shared-Hosting (STRATO). TanStack Start, SSR, Lovable Cloud, Supabase, Datenbanken und Auth sind verboten. Warum: Hosting-Ziel ist Shared Hosting ohne Server-Runtime.
+
+# Konventionen
+- Fonts lokal über @fontsource-variable/inter und @fontsource-variable/manrope, importiert in src/main.tsx. Keine <link>-Tags auf Google Fonts.
+- Semantische Design-Tokens (HSL-Variablen in src/index.css) statt Hex-Werte in Komponenten.
+- Kein window/document beim Modulladen; browser-only Code nur in useEffect (vorbereitet für späteres Pre-Rendering).
