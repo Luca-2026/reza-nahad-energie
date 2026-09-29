@@ -1,64 +1,155 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowRight, Menu, MessageCircle, Phone, X } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { ArrowRight, ChevronDown, Menu, Phone } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import logoAsset from "@/assets/nahad-energie-logo.png.asset.json";
-import { phoneDisplay, phoneHref, prices, services, standDate, whatsappHref, type QA } from "@/lib/site";
+import { areaServed, email, phoneDisplay, phoneHref, prices, services, standDate, type QA } from "@/lib/site";
 
 const nav = [
-  { to: "/leistungen", label: "Leistungen" },
   { to: "/notdienst", label: "Notdienst" },
   { to: "/ueber-uns", label: "Über uns" },
   { to: "/einsatzgebiet", label: "Einsatzgebiet" },
   { to: "/kontakt", label: "Kontakt" },
 ] as const;
 
-export function SiteLayout({ children }: { children: ReactNode }) {
+type MenuItem = { label: string; slug?: string; to?: "/notdienst" };
+const megaMenu: { title: string; items: MenuItem[] }[] = [
+  { title: "Installation & Sicherheit", items: [...services.filter((s) => s.group === "installation").map((s) => ({ label: s.name, slug: s.slug })), { label: "Notdienst", to: "/notdienst" }] },
+  { title: "Energie", items: services.filter((s) => s.group === "energie").map((s) => ({ label: s.name, slug: s.slug })) },
+  { title: "Komfort & Gewerbe", items: services.filter((s) => s.group === "komfort").map((s) => ({ label: s.name, slug: s.slug })) },
+];
+
+function MenuLink({ item, onClick, className }: { item: MenuItem; onClick?: () => void; className: string }) {
+  if (item.to) return <Link to={item.to} onClick={onClick} className={className} activeProps={{ "aria-current": "page" }}>{item.label}</Link>;
+  return <Link to="/leistungen/$slug" params={{ slug: item.slug! }} onClick={onClick} className={className} activeProps={{ "aria-current": "page" }}>{item.label}</Link>;
+}
+
+function MegaMenu() {
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDown); document.removeEventListener("keydown", onKey); };
+  }, [open]);
+  const active = pathname.startsWith("/leistungen");
+  return (
+    <div ref={ref} className="relative">
+      <button type="button" aria-expanded={open} aria-controls="mega-leistungen" onClick={() => setOpen(!open)} className={`flex min-h-11 items-center gap-1 text-sm font-semibold hover:text-primary ${active ? "text-primary underline underline-offset-8" : "text-foreground"}`}>
+        Leistungen <ChevronDown className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
+      </button>
+      {open && (
+        <div id="mega-leistungen" className="absolute left-1/2 top-full z-50 mt-3 w-[min(56rem,calc(100vw-2rem))] -translate-x-1/3 rounded-md border border-border bg-popover p-6 text-popover-foreground shadow-lg">
+          <div className="grid gap-6 md:grid-cols-3">
+            {megaMenu.map((col) => (
+              <div key={col.title}>
+                <p className="font-display text-xs font-extrabold uppercase tracking-wide text-muted-foreground">{col.title}</p>
+                <ul className="mt-3 space-y-1">
+                  {col.items.map((it) => <li key={it.label}><MenuLink item={it} className="block rounded-md px-2 py-2 text-sm font-semibold text-foreground hover:bg-secondary hover:text-primary aria-[current=page]:text-primary" /></li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <Link to="/leistungen" className="mt-5 inline-flex items-center gap-2 border-t border-border pt-4 text-sm font-bold text-primary">Alle Leistungen im Überblick <ArrowRight className="size-4" aria-hidden="true" /></Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MobileMenu() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" aria-label="Menü öffnen" className="lg:hidden"><Menu aria-hidden="true" /></Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="w-full max-w-sm overflow-y-auto">
+        <SheetHeader><SheetTitle className="text-left text-primary">Menü</SheetTitle></SheetHeader>
+        <nav aria-label="Mobile Navigation" className="mt-4 grid gap-1 px-4 pb-6">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="leistungen" className="border-b-0">
+              <AccordionTrigger className="min-h-11 py-2 text-base font-semibold">Leistungen</AccordionTrigger>
+              <AccordionContent>
+                {megaMenu.map((col) => (
+                  <div key={col.title} className="mb-3">
+                    <p className="text-xs font-extrabold uppercase text-muted-foreground">{col.title}</p>
+                    <ul className="mt-1">{col.items.map((it) => <li key={it.label}><MenuLink item={it} onClick={close} className="block min-h-11 py-2 text-sm font-semibold text-foreground aria-[current=page]:text-primary" /></li>)}</ul>
+                  </div>
+                ))}
+                <Link to="/leistungen" onClick={close} className="block min-h-11 py-2 text-sm font-bold text-primary">Alle Leistungen</Link>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          {nav.map((n) => <Link key={n.to} to={n.to} onClick={close} className="min-h-11 py-2 font-semibold text-foreground" activeProps={{ className: "text-primary", "aria-current": "page" }}>{n.label}</Link>)}
+          <a href={phoneHref} className="mt-4 flex min-h-11 items-center gap-2 font-bold text-primary"><Phone className="size-5" aria-hidden="true" />{phoneDisplay}</a>
+          <Button size="lg" asChild className="mt-2"><Link to="/kontakt" onClick={close}>Anfrage senden</Link></Button>
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
+const footerLink = "hover:text-primary-foreground";
+
+export function SiteLayout({ children }: { children: ReactNode }) {
   const onContact = useRouterState({ select: (s) => s.location.pathname === "/kontakt" });
   return (
     <>
       <a href="#inhalt" className="sr-only z-50 bg-background px-4 py-3 text-primary focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Zum Inhalt springen</a>
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 lg:px-6">
-          <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="" width="52" height="52" className="size-13" />
-            <span className="hidden font-display text-base font-extrabold leading-tight text-primary sm:block">Nahad Energie<br /><span className="font-semibold text-foreground">Elektrotechnik</span></span>
+      <header className="sticky top-0 z-40 border-b border-border bg-background">
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-4 lg:px-6">
+          <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex min-w-0 items-center gap-3">
+            <img src={logoAsset.url} alt="" width="52" height="52" className="size-13 shrink-0" />
+            <span className="hidden min-w-0 leading-tight sm:block"><span className="block font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
           </Link>
           <nav aria-label="Hauptnavigation" className="hidden items-center gap-6 lg:flex">
-            {nav.map((n) => <Link key={n.to} to={n.to} className="text-sm font-semibold text-foreground hover:text-primary" activeProps={{ className: "text-primary underline underline-offset-8" }}>{n.label}</Link>)}
+            <MegaMenu />
+            {nav.map((n) => <Link key={n.to} to={n.to} className="text-sm font-semibold text-foreground hover:text-primary" activeProps={{ className: "text-primary underline underline-offset-8", "aria-current": "page" }}>{n.label}</Link>)}
           </nav>
-          <div className="hidden items-center gap-3 md:flex">
-            <a href={phoneHref} className="flex min-h-11 items-center gap-2 text-sm font-bold text-primary"><Phone className="size-4" aria-hidden="true" />{phoneDisplay}</a>
-            <Button asChild><Link to="/kontakt">Anfrage senden</Link></Button>
+          <div className="flex items-center gap-3">
+            <a href={phoneHref} className="hidden min-h-11 items-center gap-2 text-sm font-bold text-primary md:flex"><Phone className="size-4" aria-hidden="true" />{phoneDisplay}</a>
+            <Button asChild className="hidden md:inline-flex"><Link to="/kontakt">Anfrage senden</Link></Button>
+            <MobileMenu />
           </div>
-          <Button variant="ghost" size="icon" aria-label={open ? "Menü schließen" : "Menü öffnen"} className="lg:hidden" onClick={() => setOpen(!open)}>
-            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-          </Button>
         </div>
-        {open && (
-          <nav aria-label="Mobile Navigation" className="border-t border-border bg-background px-4 py-4 lg:hidden">
-            <div className="mx-auto grid max-w-6xl gap-1">
-              {nav.map((n) => <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="min-h-11 py-2 font-semibold text-foreground">{n.label}</Link>)}
-            </div>
-          </nav>
-        )}
       </header>
-      <main id="inhalt">{children}</main>
+      <main id="inhalt" tabIndex={-1}>{children}</main>
       <footer className="bg-primary pb-20 text-primary-foreground md:pb-0">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-4 md:px-6">
-          <div className="flex items-start gap-3"><img src={logoAsset.url} alt="Logo von Nahad Energie Elektrotechnik" width="64" height="64" loading="lazy" className="size-16" /><div><strong className="font-display">Nahad Energie<br />Elektrotechnik</strong><address className="mt-3 not-italic text-sm text-primary-foreground/75">Vogelsanger Weg 38<br />40470 Düsseldorf<br /><a href={phoneHref}>{phoneDisplay}</a></address></div></div>
-          <div><h2 className="text-sm font-extrabold text-accent">Leistungen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/75">{services.slice(0, 6).map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className="hover:text-primary-foreground">{s.name} in Düsseldorf</Link></li>)}</ul></div>
-          <div><h2 className="text-sm font-extrabold text-accent">Mehr</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/75">{services.slice(6).map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className="hover:text-primary-foreground">{s.name}</Link></li>)}</ul></div>
-          <div><h2 className="text-sm font-extrabold text-accent">Unternehmen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/75">
-            <li><Link to="/ueber-uns">Über uns</Link></li><li><Link to="/karriere">Karriere</Link></li><li><Link to="/faq">Häufige Fragen</Link></li><li><Link to="/impressum">Impressum</Link></li><li><Link to="/datenschutz">Datenschutz</Link></li><li><Link to="/agb">AGB</Link></li>
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
+          <div>
+            <div className="flex items-center gap-3"><img src={logoAsset.url} alt="Logo von Nahad Energie Elektrotechnik" width="56" height="56" loading="lazy" decoding="async" className="size-14" /><strong className="font-display leading-tight">Nahad Energie<br />Elektrotechnik</strong></div>
+            <h2 className="mt-5 text-sm font-extrabold text-accent">Kontakt</h2>
+            <address className="mt-3 space-y-2 not-italic text-sm text-primary-foreground/80">
+              <p>Vogelsanger Weg 38<br />40470 Düsseldorf</p>
+              <p><a href={phoneHref} className={footerLink}>Telefon {phoneDisplay}</a><br /><a href={`mailto:${email}`} className={footerLink}>{email}</a></p>
+              <p>Bürozeiten: werden ergänzt</p>
+              <p>Störungsdienst: werden ergänzt</p>
+            </address>
+          </div>
+          <div><h2 className="text-sm font-extrabold text-accent">Leistungen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{services.map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className={footerLink}>{s.name}</Link></li>)}<li><Link to="/notdienst" className={footerLink}>Notdienst</Link></li></ul></div>
+          <div><h2 className="text-sm font-extrabold text-accent">Einsatzgebiet</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{areaServed.map((a) => <li key={a}><Link to="/einsatzgebiet" className={footerLink}>Elektriker {a}</Link></li>)}</ul></div>
+          <div><h2 className="text-sm font-extrabold text-accent">Rechtliches & mehr</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">
+            <li><Link to="/impressum" className={footerLink}>Impressum</Link></li><li><Link to="/datenschutz" className={footerLink}>Datenschutz</Link></li><li><Link to="/agb" className={footerLink}>AGB</Link></li><li><Link to="/karriere" className={footerLink}>Karriere</Link></li><li><Link to="/faq" className={footerLink}>Häufige Fragen</Link></li>
           </ul></div>
         </div>
-        <div className="border-t border-primary-foreground/15"><div className="mx-auto max-w-6xl px-4 py-5 text-xs text-primary-foreground/60 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister · Eingetragen in die Handwerksrolle · Innungsbetrieb · Installateurverzeichnis Netzgesellschaft Düsseldorf</div></div>
+        <div className="border-t border-primary-foreground/15">
+          <ul aria-label="Qualifikationen" className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-5 md:px-6">
+            {["Elektrotechnik-Meisterbetrieb", "Handwerksrolle HWK Düsseldorf", "Installateurverzeichnis Netzgesellschaft Düsseldorf"].map((b) => <li key={b} className="rounded-md border border-primary-foreground/25 px-3 py-1 text-xs font-semibold">{b}</li>)}
+          </ul>
+          <div className="mx-auto max-w-6xl px-4 pb-6 text-xs text-primary-foreground/70 md:px-6">© 2026 Nahad Energie Elektrotechnik · Inhaber Reza Nahad, Elektrotechnikermeister</div>
+        </div>
       </footer>
-      {!onContact && <nav aria-label="Schnellkontakt" className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-border bg-background md:hidden">
+      {!onContact && <nav aria-label="Schnellkontakt" className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t border-border bg-background md:hidden">
         <a href={phoneHref} className="flex min-h-16 flex-col items-center justify-center gap-1 text-xs font-bold text-primary"><Phone className="size-5" aria-hidden="true" />Anrufen</a>
-        <a href={whatsappHref} className="flex min-h-16 flex-col items-center justify-center gap-1 border-x border-border text-xs font-bold text-primary"><MessageCircle className="size-5" aria-hidden="true" />WhatsApp</a>
         <Link to="/kontakt" className="flex min-h-16 flex-col items-center justify-center gap-1 bg-accent text-xs font-bold text-accent-foreground"><ArrowRight className="size-5" aria-hidden="true" />Anfrage</Link>
       </nav>}
     </>
