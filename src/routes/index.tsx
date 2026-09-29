@@ -35,7 +35,7 @@ function Index() {
       <NoticeBar />
       <section className="overflow-hidden bg-secondary">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 lg:min-h-[640px] lg:grid-cols-[1.04fr_.96fr] lg:px-6 lg:py-18">
-          <div className="min-w-0">
+          <div className="motion-hero-copy min-w-0">
             <div className="mb-5 flex items-start gap-2 text-xs font-extrabold uppercase text-accent-strong sm:text-sm"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" /> Elektrotechnik-Meisterbetrieb · Düsseldorf-Mörsenbroich</div>
             <h1 className="max-w-3xl text-[2.25rem] font-extrabold leading-[1.08] text-primary sm:text-5xl lg:text-[3.5rem]">Elektriker in Düsseldorf – Ihr Meisterbetrieb für Elektroinstallation, Photovoltaik und Wallbox</h1>
             <figure className="relative mt-7 w-full lg:hidden">
@@ -55,7 +55,7 @@ function Index() {
               <li className="flex items-center gap-2"><Clock className="size-5 shrink-0 text-accent" aria-hidden="true" />Rückmeldung in der Regel innerhalb eines Werktags</li>
             </ul>
           </div>
-          <figure className="relative mx-auto hidden w-full max-w-xl lg:block lg:max-w-none">
+          <figure className="motion-media relative mx-auto hidden w-full max-w-xl lg:block lg:max-w-none">
             <div className="absolute -bottom-3 -left-3 top-3 w-1 bg-accent" aria-hidden="true" />
             <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad an seinem Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" className="relative aspect-[4/3] max-h-[520px] w-full rounded-md object-cover object-center" fetchPriority="high" />
             <figcaption className="relative mt-3 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister und Inhaber</figcaption>
@@ -75,13 +75,13 @@ function Index() {
         <p className="mt-4 max-w-3xl text-muted-foreground">Ein Ansprechpartner für alles, was mit Strom im Gebäude zu tun hat – von der klassischen Installation bis zur Energietechnik, die in den nächsten Jahren in fast jedes Haus kommt.</p>
         <div className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => { const Icon = serviceIcons[s.icon]; return (
-            <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="group border-b border-border p-5 transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-secondary sm:border-r lg:p-6">
+            <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="motion-card group border-b border-border p-5 hover:bg-secondary sm:border-r lg:p-6">
               <Icon className="size-6 text-accent-strong" aria-hidden="true" />
               <h3 className="mt-3 text-lg font-extrabold text-card-foreground group-hover:text-primary">{s.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
             </Link>
           ); })}
-          <Link to="/notdienst" className="group border-b border-t-2 border-border border-t-accent bg-card p-5 text-primary transition-colors hover:bg-secondary sm:border-r lg:p-6">
+          <Link to="/notdienst" className="motion-card group border-b border-t-2 border-border border-t-accent bg-card p-5 text-primary hover:bg-secondary sm:border-r lg:p-6">
             <Siren className="size-6 text-accent-strong" aria-hidden="true" />
             <h3 className="mt-3 text-lg font-extrabold">Notdienst</h3>
             <p className="mt-2 text-sm text-muted-foreground">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>
@@ -100,7 +100,7 @@ function Index() {
             { icon: PlugZap, t: "Wallbox", d: "Anmeldung ab 3,6 kW, ab 4,2 kW steuerbar nach § 14a EnWG: 110–190 € Netzentgelt-Rabatt pro Jahr (Modul 1) sind drin.", slug: "wallbox" },
             { icon: Thermometer, t: "Wärmepumpe", d: "Zuleitung, Absicherung und Anmeldung – abgestimmt mit Ihrem Heizungsbauer, bevor das Gerät geliefert wird.", slug: "waermepumpe-elektroanschluss" },
           ].map(({ icon: Icon, t, d, slug }) => (
-            <Link key={slug} to="/leistungen/$slug" params={{ slug }} className="group border-t-2 border-accent bg-card p-6 transition-colors hover:bg-background">
+            <Link key={slug} to="/leistungen/$slug" params={{ slug }} className="motion-card group border-t-2 border-accent bg-card p-6 hover:bg-background">
               <Icon className="size-6 text-accent-strong" aria-hidden="true" />
               <h3 className="mt-3 font-extrabold text-primary">{t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>

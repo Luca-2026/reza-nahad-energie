@@ -15,4 +15,4 @@
 - [x] Knalliges Orange durch sparsam eingesetztes Messinggold ersetzen und große Akzentflächen beruhigen
 - [x] Menü- und Überschriftenumbrüche auf allen Seiten für Mobil- und Desktopbreiten vereinheitlichen
 - [x] Entwurfshinweise entfernen und Qualifikationen, Berufserfahrung sowie Bürozeiten veröffentlichungsreif ergänzen
-- [ ] Professionelle Animationen nach Auswahl der Bewegungsrichtung ergänzen
+- [x] Professionelle Animationen nach Auswahl der Bewegungsrichtung ergänzen
