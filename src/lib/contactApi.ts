@@ -1,13 +1,13 @@
 export type ContactPayload = {
   name: string; email: string; phone: string; service: string;
-  message: string; location?: string; callback?: string; website?: string; token: string;
+  message: string; location?: string | undefined; callback?: string | undefined; website?: string | undefined; token: string;
 };
 
-const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/contact.php";
+const ENDPOINT = import.meta.env["VITE_CONTACT_ENDPOINT"] || "/api/contact.php";
 
 function isMock(): boolean {
   if (import.meta.env.DEV) return true;
-  if (import.meta.env.VITE_CONTACT_MOCK === "true") return true;
+  if (import.meta.env["VITE_CONTACT_MOCK"] === "true") return true;
   const h = typeof window !== "undefined" ? window.location.hostname : "";
   return /\.(lovable\.app|lovableproject\.com)$/.test(h);
 }
