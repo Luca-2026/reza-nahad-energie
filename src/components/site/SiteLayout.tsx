@@ -117,23 +117,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     window.addEventListener("scroll", updateVisibility, { passive: true });
     return () => window.removeEventListener("scroll", updateVisibility);
   }, [pathname]);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-revealed");
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
-    sections.forEach((section, index) => {
-      section.classList.add("site-reveal");
-      if (index === 0) section.classList.add("is-revealed");
-      else observer.observe(section);
-    });
-    return () => observer.disconnect();
-  }, [pathname]);
   const showQuickContact = !onContact && (pathname !== "/" || showHomeQuickContact);
   return (
     <>
