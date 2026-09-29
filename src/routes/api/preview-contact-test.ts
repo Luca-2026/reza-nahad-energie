@@ -30,7 +30,7 @@ export const Route = createFileRoute("/api/preview-contact-test")({
 
         const key = process.env["RESEND_API_KEY"];
         if (!key) return json(503, { ok: false, error: "missing_key" });
-        const from = process.env["RESEND_TEST_FROM"] || "Nahad Energie Test <onboarding@resend.dev>";
+        const from = process.env["RESEND_TEST_FROM"] || "Nahad Energie Test <test@nahad-energie.de>";
         const to = process.env["RESEND_TEST_TO"] || "info@nahad-energie.de";
 
         const rows = [["Name", d.name], ["Telefon", d.phone], ["E-Mail", d.email], ["Leistung", d.service], ["PLZ/Ort", d.location ?? "–"], ["Rückruf", d.callback ?? "–"]]
