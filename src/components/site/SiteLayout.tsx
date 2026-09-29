@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import logoAsset from "@/assets/nahad-energie-logo.png.asset.json";
-import { areaServed, email, phoneDisplay, phoneHref, prices, services, standDate, type QA } from "@/lib/site";
+import { areaServed, email, googleProfileHref, phoneDisplay, phoneHref, prices, services, standDate, type QA } from "@/lib/site";
 import { CookieConsent, openCookieSettings } from "./CookieConsent";
 
 const nav = [
@@ -149,6 +149,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <p>Vogelsanger Weg 38<br />40470 Düsseldorf</p>
               <p><a href={phoneHref} className={footerLink}>Telefon {phoneDisplay}</a><br /><a href={`mailto:${email}`} className={footerLink}>{email}</a></p>
               <p>Bürozeiten:<br />Montag–Freitag, 08:00–17:00 Uhr</p>
+              <p><a href={googleProfileHref} target="_blank" rel="noopener" className={footerLink}>Google-Unternehmensprofil</a></p>
             </address>
           </div>
           <div><h2 className="text-sm font-extrabold text-accent">Leistungen</h2><ul className="mt-3 space-y-1 text-sm text-primary-foreground/80">{services.map((s) => <li key={s.slug}><Link to="/leistungen/$slug" params={{ slug: s.slug }} className={footerLink}>{s.name}</Link></li>)}<li><Link to="/notdienst" className={footerLink}>Notdienst</Link></li></ul></div>

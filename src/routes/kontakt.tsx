@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Breadcrumbs, PageHero, Section, StepList } from "@/components/site/SiteLayout";
-import { email, jsonLd, mapsHref, phoneDisplay, phoneHref, seo } from "@/lib/site";
+import { email, googleProfileHref, jsonLd, mapsHref, phoneDisplay, phoneHref, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
