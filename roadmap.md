@@ -1,6 +1,9 @@
 # Roadmap
 
-- [x] Nahad-Designsystem und Startseitenstruktur umsetzen
-- [x] Originalbilder passend einbinden und deutsche Alternativtexte vergeben
-- [x] Kontaktwege und Anfrageformular ergänzen
-- [x] Darstellung, Bedienung und Fehlerfreiheit prüfen
+- [ ] Gemeinsames Designsystem und responsive Grundregeln überarbeiten
+- [ ] Navigation, Seitenköpfe, Kontaktflächen und Footer neu ordnen
+- [ ] Startseite in klare Kapitel umbauen
+- [ ] Leistungsübersicht und Leistungsdetailseiten entzerren
+- [ ] Kontaktformular und übrige Inhaltsseiten responsiv angleichen
+- [ ] Mobil- und Desktopdarstellung aller öffentlichen Seiten prüfen
+- [ ] STRATO-FTP-Paket neu erzeugen und kontrollieren
