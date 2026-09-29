@@ -10,3 +10,4 @@
 - [x] Rechtstexte aus den beiden Word-Dateien vollständig und wortgetreu einfügen
 - [x] Cookie-Auswahl websiteweit ergänzen, WhatsApp entfernen und Datenschutz aktualisieren
 - [x] Impressum mit Steuerdaten und Betriebsnummer veröffentlichungsreif vervollständigen
+- [x] Mobile Startseite mit scrollabhängiger Kontaktleiste, kompakter Störungsmeldung und neuer Bildverteilung optimieren

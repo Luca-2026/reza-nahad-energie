@@ -6,7 +6,7 @@ import { serviceIcons } from "@/components/site/serviceIcons";
 import { faqAppointment, faqB2B, faqCostHour, faqFuseBox, faqGrid, faqSchema, faqWarranty, generalSteps, phoneDisplay, phoneHref, seo, services, standDate } from "@/lib/site";
 import officeAsset from "@/assets/reza-nahad-buero.jpeg.asset.json";
 import workAsset from "@/assets/reza-nahad-elektroarbeit.jpeg.asset.json";
-import distributionAsset from "@/assets/nahad-baustromverteiler.jpeg.asset.json";
+import distributionAsset from "@/assets/nahad-baustromverteiler-freigestellt.png";
 
 const homeFaqs = [faqCostHour, faqAppointment, faqGrid, faqFuseBox, faqB2B, faqWarranty];
 
@@ -38,6 +38,11 @@ function Index() {
           <div className="min-w-0">
             <div className="mb-5 flex items-start gap-2 text-xs font-extrabold uppercase text-accent-strong sm:text-sm"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" /> Elektrotechnik-Meisterbetrieb · Düsseldorf-Mörsenbroich</div>
             <h1 className="max-w-3xl text-[2.25rem] font-extrabold leading-[1.08] text-primary sm:text-5xl lg:text-[3.5rem]">Elektriker in Düsseldorf – Ihr Meisterbetrieb für Elektroinstallation, Photovoltaik und Wallbox</h1>
+            <figure className="relative mt-7 w-full lg:hidden">
+              <div className="absolute -bottom-2 -left-2 top-2 w-1 bg-accent" aria-hidden="true" />
+              <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad an seinem Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" className="relative aspect-[4/3] w-full rounded-md object-cover object-center" fetchPriority="high" />
+              <figcaption className="relative mt-2 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister und Inhaber</figcaption>
+            </figure>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Von der defekten Steckdose bis zur PV-Anlage mit Speicher und Ladepunkt: Wir planen, installieren und melden beim Netzbetreiber an – persönlich geführt von Elektrotechnikermeister Reza Nahad, mit Preisen, die Sie vor dem Auftrag kennen.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button size="lg" asChild><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button>
@@ -50,10 +55,10 @@ function Index() {
               <li className="flex items-center gap-2"><Clock className="size-5 shrink-0 text-accent" aria-hidden="true" />Rückmeldung in der Regel innerhalb eines Werktags</li>
             </ul>
           </div>
-          <figure className="relative mx-auto w-full max-w-md lg:max-w-none">
+          <figure className="relative mx-auto hidden w-full max-w-xl lg:block lg:max-w-none">
             <div className="absolute -bottom-3 -left-3 top-3 w-1 bg-accent" aria-hidden="true" />
-            <img src={workAsset.url} alt="Elektrotechnikermeister Reza Nahad prüft in Düsseldorf die Elektrik einer geöffneten Anlage" width="768" height="1024" className="relative aspect-[4/5] max-h-[560px] w-full rounded-md object-cover" fetchPriority="high" />
-            <figcaption className="relative mt-3 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister</figcaption>
+            <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad an seinem Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" className="relative aspect-[4/3] max-h-[520px] w-full rounded-md object-cover object-center" fetchPriority="high" />
+            <figcaption className="relative mt-3 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister und Inhaber</figcaption>
           </figure>
         </div>
       </section>
@@ -128,7 +133,7 @@ function Index() {
 
       <Section muted>
         <div className="grid min-w-0 items-center gap-12 lg:grid-cols-2">
-          <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad am Schreibtisch im Büro von Nahad Energie in Düsseldorf-Mörsenbroich" width="1366" height="768" loading="lazy" className="aspect-[4/3] w-full rounded-md object-cover" />
+          <img src={workAsset.url} alt="Elektrotechnikermeister Reza Nahad prüft in Warnschutzkleidung die geöffnete Anlage eines Stromaggregats" width="768" height="1024" loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-md object-cover object-center" />
           <div>
             <p className="eyebrow">Persönlich geführt</p><h2 className="section-heading mt-3">Reza Nahad – Elektrotechnikermeister aus Düsseldorf</h2>
             <p className="mt-5 text-muted-foreground">Ich habe meinen eigenen Betrieb in Düsseldorf gegründet, weil ich Elektrik so machen wollte, wie ich sie mir selbst im Haus wünsche: ordentlich verlegt, sauber beschriftet, geprüft und erklärt. Mein Betrieb sitzt am Vogelsanger Weg in Mörsenbroich; die meisten Kunden erreichen wir in 20 Minuten.</p>
@@ -140,7 +145,7 @@ function Index() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1fr_.8fr] md:px-6 md:py-20">
           <div><p className="eyebrow text-accent">Gewerbe & Bau</p><h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Baustrom für Bauvorhaben</h2><p className="mt-5 max-w-xl text-primary-foreground/80">Für Baustellen und temporäre Vorhaben stellen wir eine passende elektrische Versorgung mit eigenem Baustromverteiler bereit.</p><Button className="mt-8" asChild><Link to="/leistungen/$slug" params={{ slug: "gewerbe-hausverwaltung" }}>Gewerbe & Hausverwaltungen</Link></Button></div>
-          <img src={distributionAsset.url} alt="Orangefarbener Baustromverteiler mit Nahad-Energie-Beschriftung auf einer Baustelle in Düsseldorf" width="768" height="922" loading="lazy" className="mx-auto aspect-[4/5] max-h-[480px] w-full rounded-md object-contain" />
+          <img src={distributionAsset} alt="Freigestellter orangefarbener Baustromverteiler mit Nahad-Energie-Beschriftung" width="768" height="938" loading="lazy" decoding="async" className="mx-auto aspect-[4/5] max-h-[480px] w-full object-contain" />
         </div>
       </section>
 
