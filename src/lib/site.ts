@@ -10,6 +10,7 @@ export const ngdNote = "Eingetragen im Installateurverzeichnis der Netzgesellsch
 export const ngdServices = ["photovoltaik", "wallbox", "zaehlerschrank-sicherungskasten", "waermepumpe-elektroanschluss"];
 
 export function seo(path: string, title: string, description: string, type = "website") {
+  const absoluteUrl = `https://nahad-energie.de${path === "/" ? "" : path}`;
   return {
     meta: [
       { title },
@@ -17,10 +18,10 @@ export function seo(path: string, title: string, description: string, type = "we
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: type },
-      { property: "og:url", content: path },
+      { property: "og:url", content: absoluteUrl },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: path }],
+    links: [{ rel: "canonical", href: absoluteUrl }],
   };
 }
 

@@ -20,16 +20,16 @@ export const Route = createFileRoute("/leistungen/")({
 
 function Cards({ items, emergency = false }: { items: Service[]; emergency?: boolean }) {
   return (
-    <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-8 grid border-y border-border sm:grid-cols-2 lg:grid-cols-3">
       {items.map((s) => { const Icon = serviceIcons[s.icon]; return (
-        <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="rounded-md border border-border bg-card p-6 hover:border-primary">
+        <Link key={s.slug} to="/leistungen/$slug" params={{ slug: s.slug }} className="border-b border-r border-border bg-card p-5 transition-colors hover:bg-secondary lg:p-6">
           <Icon className="size-6 text-accent-strong" aria-hidden="true" />
           <h3 className="mt-3 text-lg font-extrabold text-primary">{s.name}</h3>
           <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
         </Link>
       ); })}
       {emergency && (
-        <Link to="/notdienst" className="rounded-md bg-accent p-6 text-accent-foreground">
+        <Link to="/notdienst" className="border-b border-r border-border bg-accent p-5 text-accent-foreground lg:p-6">
           <Siren className="size-6" aria-hidden="true" />
           <h3 className="mt-3 text-lg font-extrabold">Notdienst</h3>
           <p className="mt-2 text-sm">Stromausfall, Sicherung fliegt, FI löst aus – Störungsdienst mit offenen Zuschlägen.</p>

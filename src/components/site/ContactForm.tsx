@@ -25,7 +25,7 @@ const schema = z.object({
 type Fields = keyof z.infer<typeof schema>;
 type Status = "idle" | "sending" | "sent";
 
-const inputCls = "min-h-11 w-full rounded-md border border-input bg-background px-3 font-normal text-foreground aria-[invalid=true]:border-destructive";
+const inputCls = "min-h-12 w-full rounded-md border border-input bg-background px-3 font-normal text-foreground transition-colors focus:border-primary aria-[invalid=true]:border-destructive";
 
 export function ContactForm() {
   const [token, setToken] = useState("");
@@ -68,7 +68,7 @@ export function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div role="status" className="rounded-md border border-border bg-card p-6 md:p-8">
+      <div role="status" className="border-l-4 border-success bg-secondary p-6 md:p-8">
         <CheckCircle2 className="size-10 text-success" aria-hidden="true" />
         <h2 className="mt-4 text-2xl font-extrabold text-primary">Vielen Dank – Ihre Anfrage ist bei uns angekommen.</h2>
         <p className="mt-3 text-muted-foreground">Wir melden uns in der Regel innerhalb eines Werktags telefonisch oder per E-Mail. Bei Projekten vereinbaren wir einen Vor-Ort-Termin, danach erhalten Sie ein schriftliches Angebot.</p>
@@ -81,8 +81,9 @@ export function ContactForm() {
   const a11y = (k: Fields) => ({ id: `cf-${k}`, name: k, "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `cf-${k}-error` : undefined });
 
   return (
-    <form onSubmit={submit} noValidate className="relative rounded-md border border-border bg-card p-6 md:p-8" aria-label="Anfrageformular">
-      <h2 className="mb-6 text-2xl font-extrabold text-primary">Anfrage senden</h2>
+    <form onSubmit={submit} noValidate className="relative border-t-2 border-accent bg-card pt-6 md:pt-8" aria-label="Anfrageformular">
+      <p className="eyebrow">Ihr Anliegen</p>
+      <h2 className="mb-7 mt-2 text-2xl font-extrabold text-primary">Anfrage senden</h2>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="grid gap-2"><label htmlFor="cf-name" className="text-sm font-bold">Name *</label><input {...a11y("name")} autoComplete="name" maxLength={100} className={inputCls} />{err("name")}</div>
         <div className="grid gap-2"><label htmlFor="cf-phone" className="text-sm font-bold">Telefon *</label><input {...a11y("phone")} type="tel" autoComplete="tel" maxLength={30} className={inputCls} />{err("phone")}</div>

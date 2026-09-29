@@ -72,28 +72,28 @@
   --radius: 0.5rem;
   --font-body: "Inter Variable", system-ui, sans-serif;
   --font-display: "Manrope Variable", "Inter Variable", sans-serif;
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(220 35% 12%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(220 35% 12%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(220 35% 12%);
-  --primary: hsl(216 62% 18%);
-  --primary-soft: hsl(216 55% 26%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(210 30% 96%);
-  --secondary-foreground: hsl(220 35% 12%);
-  --muted: hsl(210 25% 95%);
-  --muted-foreground: hsl(216 15% 40%);
-  --accent: hsl(40 96% 52%);
-  --accent-strong: hsl(36 90% 36%);
-  --accent-foreground: hsl(220 35% 12%);
-  --destructive: hsl(0 72% 45%);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.27 0.055 253);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.27 0.055 253);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.27 0.055 253);
+  --primary: oklch(0.29 0.071 253);
+  --primary-soft: oklch(0.38 0.075 253);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.975 0.006 255);
+  --secondary-foreground: oklch(0.27 0.055 253);
+  --muted: oklch(0.96 0.008 255);
+  --muted-foreground: oklch(0.49 0.035 253);
+  --accent: oklch(0.79 0.17 74);
+  --accent-strong: oklch(0.61 0.145 63);
+  --accent-foreground: oklch(0.27 0.055 253);
+  --destructive: oklch(0.53 0.21 27);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: hsl(214 20% 88%);
-  --input: hsl(214 20% 88%);
-  --ring: hsl(40 96% 52%);
-  --success: hsl(152 60% 38%);
+  --border: oklch(0.89 0.015 253);
+  --input: oklch(0.89 0.015 253);
+  --ring: oklch(0.79 0.17 74);
+  --success: oklch(0.54 0.14 155);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -156,14 +156,21 @@
     line-height: 1.6;
     letter-spacing: 0;
     margin: 0;
+    overflow-x: hidden;
     padding-bottom: 4.25rem;
   }
 
   h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 800;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
   }
+
+  p, li, dd { overflow-wrap: anywhere; }
+
+  main { min-width: 0; }
 
   html {
     scroll-behavior: smooth;
@@ -182,4 +189,21 @@
     html { scroll-behavior: auto; }
     *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
   }
+}
+
+@utility section-heading {
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+  @media (min-width: 768px) { font-size: 2.25rem; }
+}
+
+@utility eyebrow {
+  color: var(--color-accent-strong);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }

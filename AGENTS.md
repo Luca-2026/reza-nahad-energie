@@ -16,3 +16,4 @@
 - Every public page is prerendered to static HTML (vite.config.ts `pages` list) so dist/client can be FTP-uploaded to STRATO Apache; keep the list, sitemap.xml and .htaccess in sync.
 - No server functions or server-only loaders: the live site has no Node server; the contact form posts to public/api/contact.php (PHP on STRATO), mocked in the preview via src/lib/contactApi.ts.
 - scripts/package-strato.py builds the FTP ZIP and copies Lovable Asset images into it under their original /__l5e/ paths.
+- Responsive page hierarchy is centralized in SiteLayout and semantic CSS utilities; this keeps all static routes visually consistent on mobile and desktop.

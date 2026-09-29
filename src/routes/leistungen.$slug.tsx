@@ -32,7 +32,7 @@ export const Route = createFileRoute("/leistungen/$slug")({
 });
 
 function H2({ children }: { children: string }) {
-  return <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{children}</h2>;
+  return <h2 className="section-heading">{children}</h2>;
 }
 
 function Page() {
@@ -43,16 +43,16 @@ function Page() {
     <>
       <NoticeBar />
       <Breadcrumbs items={[{ label: "Leistungen", to: "/leistungen" }, { label: s.name }]} />
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
-          <p className="flex items-center gap-2 text-sm font-extrabold uppercase text-accent"><Icon className="size-5" aria-hidden="true" />{s.name} · Düsseldorf</p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-extrabold leading-tight md:text-5xl">{s.h1}</h1>
-          <p className="mt-5 max-w-3xl text-lg text-primary-foreground/80">{s.intro}</p>
+      <section className="border-b border-border bg-secondary">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
+          <p className="eyebrow flex items-center gap-2"><Icon className="size-5" aria-hidden="true" />{s.name} · Düsseldorf</p>
+          <h1 className="mt-4 max-w-4xl text-[2rem] font-extrabold leading-[1.12] text-primary sm:text-4xl md:text-5xl">{s.h1}</h1>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">{s.intro}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button size="lg" asChild><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button>
             <Button size="lg" variant="outline" asChild><a href={phoneHref}><Phone className="size-5" aria-hidden="true" />{phoneDisplay}</a></Button>
           </div>
-          {ngdServices.includes(s.slug) && <p className="mt-6 flex items-center gap-2 text-sm font-semibold text-primary-foreground/90"><BadgeCheck className="size-5 text-accent" aria-hidden="true" />{ngdNote}</p>}
+          {ngdServices.includes(s.slug) && <p className="mt-6 flex items-start gap-2 border-t border-border pt-5 text-sm font-semibold text-primary"><BadgeCheck className="mt-0.5 size-5 shrink-0 text-accent-strong" aria-hidden="true" />{ngdNote}</p>}
         </div>
       </section>
 
@@ -76,8 +76,8 @@ function Page() {
 
       <Section>
         <H2>{s.knowHeading ?? "Das sollten Sie wissen"}</H2>
-        <dl className="mt-6 grid gap-6 md:grid-cols-2">
-          {s.know.map(([t, d]) => <div key={t} className="rounded-md border border-border bg-card p-5"><dt className="font-extrabold text-primary">{t}</dt><dd className="mt-2 text-sm text-muted-foreground">{d}</dd></div>)}
+         <dl className="mt-6 grid gap-x-10 gap-y-0 md:grid-cols-2">
+          {s.know.map(([t, d]) => <div key={t} className="border-t border-border py-5"><dt className="font-extrabold text-primary">{t}</dt><dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</dd></div>)}
         </dl>
       </Section>
 
@@ -102,7 +102,7 @@ function Page() {
         <H2>Verwandte Leistungen</H2>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {related.map((r) => { const RI = serviceIcons[r.icon]; return (
-            <Link key={r.slug} to="/leistungen/$slug" params={{ slug: r.slug }} className="group rounded-md border border-border bg-card p-6 hover:border-primary">
+             <Link key={r.slug} to="/leistungen/$slug" params={{ slug: r.slug }} className="group border-t-2 border-accent bg-card p-6 transition-colors hover:bg-secondary">
               <RI className="size-6 text-accent-strong" aria-hidden="true" />
               <h3 className="mt-3 font-extrabold text-primary">{r.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{r.short}</p>
