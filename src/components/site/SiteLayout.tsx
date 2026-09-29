@@ -176,7 +176,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 export function PageHero({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
   return (
     <section className="border-b border-border bg-secondary">
-      <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
+      <div className="motion-hero-copy mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
         <p className="eyebrow">{eyebrow}</p>
         <h1 className="mt-4 max-w-4xl text-[2rem] font-extrabold leading-[1.12] text-primary sm:text-4xl md:text-5xl">{title}</h1>
         {children && <div className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">{children}</div>}
@@ -213,14 +213,14 @@ export function NoticeBar() {
 }
 
 export function Section({ children, muted = false }: { children: ReactNode; muted?: boolean }) {
-  return <section className={muted ? "border-y border-border bg-secondary py-12 md:py-20" : "bg-background py-12 md:py-20"}><div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div></section>;
+  return <section className={muted ? "border-y border-border bg-secondary py-12 md:py-20" : "bg-background py-12 md:py-20"}><div className="section-content mx-auto max-w-6xl px-4 md:px-6">{children}</div></section>;
 }
 
 export function StepList({ steps }: { steps: [string, string][] }) {
   return (
     <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {steps.map(([t, d], i) => (
-         <li key={t} className="border-t-2 border-accent pt-4">
+         <li key={t} className="motion-card border-t-2 border-accent pt-4">
           <span className="font-display text-sm font-extrabold text-accent-strong">0{i + 1}</span>
           <h3 className="mt-1 font-extrabold text-primary">{t}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{d}</p>
