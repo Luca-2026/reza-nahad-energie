@@ -101,7 +101,7 @@ function MobileMenu() {
 const footerLink = "hover:text-primary-foreground";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
-  const onContact = useRouterState({ select: (s) => s.location.pathname === "/kontakt" });
+  const onContact = useRouterState({ select: (s) => s.location.pathname.replace(/\/$/, "") === "/kontakt" });
   return (
     <>
       <a href="#inhalt" className="sr-only z-50 bg-background px-4 py-3 text-primary focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Zum Inhalt springen</a>

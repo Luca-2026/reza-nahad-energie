@@ -13,3 +13,6 @@
 - Keep brand media as Lovable Assets pointers, except the derived favicon; this avoids committing large uploaded binaries.
 - Site pages follow SEO plan B.3; service pages are data-driven from src/lib/site.ts via /leistungen/$slug — one source for titles, H1 and links.
 - Shared header/footer live in SiteLayout, mounted in __root — every page gets the same navigation.
+- Every public page is prerendered to static HTML (vite.config.ts `pages` list) so dist/client can be FTP-uploaded to STRATO Apache; keep the list, sitemap.xml and .htaccess in sync.
+- No server functions or server-only loaders: the live site has no Node server; the contact form posts to public/api/contact.php (PHP on STRATO), mocked in the preview via src/lib/contactApi.ts.
+- scripts/package-strato.py builds the FTP ZIP and copies Lovable Asset images into it under their original /__l5e/ paths.
