@@ -23,7 +23,8 @@ const megaMenu: { title: string; items: MenuItem[] }[] = [
 
 function MenuLink({ item, onClick, className }: { item: MenuItem; onClick?: () => void; className: string }) {
   if (item.to) return <Link to={item.to} onClick={onClick} className={className} activeProps={{ "aria-current": "page" }}>{item.label}</Link>;
-  return <Link to="/leistungen/$slug" params={{ slug: item.slug! }} onClick={onClick} className={className} activeProps={{ "aria-current": "page" }}>{item.label}</Link>;
+  if (!item.slug) return null;
+  return <Link to="/leistungen/$slug" params={{ slug: item.slug }} onClick={onClick} className={className} activeProps={{ "aria-current": "page" }}>{item.label}</Link>;
 }
 
 function MegaMenu() {
@@ -42,11 +43,11 @@ function MegaMenu() {
   const active = pathname.startsWith("/leistungen");
   return (
     <div ref={ref} className="relative">
-      <button type="button" aria-expanded={open} aria-controls="mega-leistungen" onClick={() => setOpen(!open)} className={`flex min-h-11 items-center gap-1 text-sm font-semibold hover:text-primary ${active ? "text-primary underline underline-offset-8" : "text-foreground"}`}>
+      <Button type="button" variant="ghost" aria-expanded={open} aria-controls="mega-leistungen" onClick={() => setOpen(!open)} className={`px-0 hover:bg-transparent ${active ? "text-primary" : "text-foreground"}`}>
         Leistungen <ChevronDown className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
-      </button>
+      </Button>
       {open && (
-        <div id="mega-leistungen" className="absolute left-1/2 top-full z-50 mt-3 w-[min(56rem,calc(100vw-2rem))] -translate-x-1/3 rounded-md border border-border bg-popover p-6 text-popover-foreground shadow-lg">
+        <div id="mega-leistungen" className="absolute left-1/2 top-full z-50 mt-2 w-[min(56rem,calc(100vw-2rem))] -translate-x-1/3 border border-border bg-popover p-6 text-popover-foreground shadow-lg">
           <div className="grid gap-6 md:grid-cols-3">
             {megaMenu.map((col) => (
               <div key={col.title}>
@@ -72,7 +73,7 @@ function MobileMenu() {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" aria-label="Menü öffnen" className="lg:hidden"><Menu aria-hidden="true" /></Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-full max-w-sm overflow-y-auto">
+       <SheetContent side="right" className="w-[min(23rem,calc(100vw-1rem))] overflow-y-auto">
         <SheetHeader><SheetTitle className="text-left text-primary">Menü</SheetTitle></SheetHeader>
         <nav aria-label="Mobile Navigation" className="mt-4 grid gap-1 px-4 pb-6">
           <Accordion type="single" collapsible>
@@ -105,17 +106,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <a href="#inhalt" className="sr-only z-50 bg-background px-4 py-3 text-primary focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Zum Inhalt springen</a>
-      <header className="sticky top-0 z-40 border-b border-border bg-background">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-4 lg:px-6">
+       <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-sm">
+         <div className="mx-auto grid h-18 max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 lg:flex lg:h-20 lg:px-6">
           <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex min-w-0 items-center gap-3">
             <img src={logoAsset.url} alt="" width="52" height="52" className="size-13 shrink-0" />
             <span className="hidden min-w-0 leading-tight sm:block"><span className="block font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
           </Link>
-          <nav aria-label="Hauptnavigation" className="hidden items-center gap-6 lg:flex">
+           <nav aria-label="Hauptnavigation" className="ml-auto hidden items-center gap-5 lg:flex">
             <MegaMenu />
             {nav.map((n) => <Link key={n.to} to={n.to} className="text-sm font-semibold text-foreground hover:text-primary" activeProps={{ className: "text-primary underline underline-offset-8", "aria-current": "page" }}>{n.label}</Link>)}
           </nav>
-          <div className="flex items-center gap-3">
+           <div className="flex shrink-0 items-center gap-2">
             <a href={phoneHref} className="hidden min-h-11 items-center gap-2 text-sm font-bold text-primary md:flex"><Phone className="size-4" aria-hidden="true" />{phoneDisplay}</a>
             <Button asChild className="hidden md:inline-flex"><Link to="/kontakt">Anfrage senden</Link></Button>
             <MobileMenu />
@@ -123,8 +124,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
       </header>
       <main id="inhalt" tabIndex={-1}>{children}</main>
-      <footer className="bg-primary pb-20 text-primary-foreground md:pb-0">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
+       <footer className="bg-primary pb-20 text-primary-foreground md:pb-0">
+         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 md:px-6 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3"><img src={logoAsset.url} alt="Logo von Nahad Energie Elektrotechnik" width="56" height="56" loading="lazy" decoding="async" className="size-14" /><strong className="font-display leading-tight">Nahad Energie<br />Elektrotechnik</strong></div>
             <h2 className="mt-5 text-sm font-extrabold text-accent">Kontakt</h2>
@@ -158,11 +159,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
 export function PageHero({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
   return (
-    <section className="bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
-        <p className="text-sm font-extrabold uppercase text-accent">{eyebrow}</p>
-        <h1 className="mt-3 max-w-4xl text-3xl font-extrabold leading-tight md:text-5xl">{title}</h1>
-        {children && <div className="mt-5 max-w-3xl text-lg text-primary-foreground/80">{children}</div>}
+    <section className="border-b border-border bg-secondary">
+      <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-18">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1 className="mt-4 max-w-4xl text-[2rem] font-extrabold leading-[1.12] text-primary sm:text-4xl md:text-5xl">{title}</h1>
+        {children && <div className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">{children}</div>}
       </div>
     </section>
   );
@@ -171,7 +172,7 @@ export function PageHero({ eyebrow, title, children }: { eyebrow: string; title:
 export function Breadcrumbs({ items }: { items: { label: string; to?: string }[] }) {
   return (
     <nav aria-label="Brotkrumen" className="border-b border-border bg-background">
-      <ol className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-3 text-sm text-muted-foreground md:px-6">
+       <ol className="mx-auto flex max-w-6xl min-w-0 flex-wrap gap-2 px-4 py-3 text-xs text-muted-foreground sm:text-sm md:px-6">
         <li><Link to="/" className="hover:text-primary">Start</Link> ›</li>
         {items.map((it, i) => i === items.length - 1
           ? <li key={it.label} aria-current="page" className="font-semibold text-foreground">{it.label}</li>
@@ -184,7 +185,7 @@ export function Breadcrumbs({ items }: { items: { label: string; to?: string }[]
 export function NoticeBar() {
   return (
     <div className="border-b border-border bg-accent text-accent-foreground">
-      <p className="mx-auto max-w-6xl px-4 py-2 text-sm font-semibold md:px-6">
+       <p className="mx-auto max-w-6xl px-4 py-2 text-center text-xs font-semibold leading-relaxed sm:text-left sm:text-sm md:px-6">
         Störung oder Stromausfall? Störungsdienst: <a href={phoneHref} className="font-extrabold underline">{phoneDisplay}</a> · Zuschläge stehen offen auf der <Link to="/notdienst" className="underline">Notdienst-Seite</Link>.
       </p>
     </div>
@@ -192,14 +193,14 @@ export function NoticeBar() {
 }
 
 export function Section({ children, muted = false }: { children: ReactNode; muted?: boolean }) {
-  return <section className={muted ? "bg-secondary py-14 md:py-20" : "bg-background py-14 md:py-20"}><div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div></section>;
+  return <section className={muted ? "border-y border-border bg-secondary py-12 md:py-20" : "bg-background py-12 md:py-20"}><div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div></section>;
 }
 
 export function StepList({ steps }: { steps: [string, string][] }) {
   return (
-    <ol className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {steps.map(([t, d], i) => (
-        <li key={t} className="border-t-2 border-accent pt-4">
+         <li key={t} className="border-t-2 border-accent pt-4">
           <span className="font-display text-sm font-extrabold text-accent-strong">0{i + 1}</span>
           <h3 className="mt-1 font-extrabold text-primary">{t}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{d}</p>
@@ -211,10 +212,10 @@ export function StepList({ steps }: { steps: [string, string][] }) {
 
 export function FaqList({ faqs }: { faqs: QA[] }) {
   return (
-    <div className="mt-6 max-w-3xl divide-y divide-border border-y border-border">
+    <div className="mt-6 max-w-4xl divide-y divide-border border-y border-border">
       {faqs.map(([q, a]) => (
-        <details key={q} className="py-5">
-          <summary className="cursor-pointer text-lg font-extrabold text-primary">{q}</summary>
+         <details key={q} className="py-5 open:pb-6">
+           <summary className="cursor-pointer pr-4 text-base font-extrabold text-primary sm:text-lg">{q}</summary>
           <p className="mt-3 text-muted-foreground">{a}</p>
         </details>
       ))}
@@ -224,31 +225,33 @@ export function FaqList({ faqs }: { faqs: QA[] }) {
 
 export function CtaBand({ title = "Was steht bei Ihnen an?", text = "Schreiben Sie uns kurz, worum es geht – oder rufen Sie an. Fotos vom Sicherungskasten oder der Stelle helfen uns, schneller eine Einschätzung zu geben." }: { title?: string; text?: string }) {
   return (
-    <Section muted>
-      <div className="grid items-center gap-8 md:grid-cols-[1.3fr_.7fr]">
+     <section className="bg-primary text-primary-foreground">
+       <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 md:grid-cols-[1.3fr_.7fr] md:px-6 md:py-16">
         <div>
-          <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{title}</h2>
-          <p className="mt-2 text-muted-foreground">{text}</p>
+           <p className="eyebrow text-accent">Direkter Kontakt</p>
+           <h2 className="mt-3 text-2xl font-extrabold md:text-3xl">{title}</h2>
+           <p className="mt-3 max-w-2xl text-primary-foreground/75">{text}</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row"><Button size="lg" asChild><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button><Button size="lg" variant="outline" asChild><a href={phoneHref}><Phone className="size-5" aria-hidden="true" />{phoneDisplay}</a></Button></div>
         </div>
-        <address className="rounded-md border border-border bg-card p-5 text-sm not-italic text-muted-foreground">
-          <strong className="block text-primary">Nahad Energie Elektrotechnik</strong>
+         <address className="border-l-2 border-accent pl-5 text-sm not-italic text-primary-foreground/75">
+           <strong className="block text-primary-foreground">Nahad Energie Elektrotechnik</strong>
           Vogelsanger Weg 38<br />40470 Düsseldorf<br /><a href={phoneHref} className="font-semibold text-primary">{phoneDisplay}</a>
         </address>
       </div>
-    </Section>
+       </div>
+     </section>
   );
 }
 
 export function PriceBox() {
   return (
-    <div className="rounded-md border-2 border-accent bg-card p-6">
+    <div className="border-l-4 border-accent bg-secondary p-5 sm:p-6">
       <h2 className="font-display text-xl font-extrabold text-primary">Preise – transparent und inkl. MwSt.</h2>
       <dl className="mt-4 divide-y divide-border tabular-nums">
-        <div className="flex justify-between gap-4 py-2"><dt>Stundensatz Elektroniker</dt><dd className="font-extrabold text-primary">{prices.hourly}</dd></div>
-        <div className="flex justify-between gap-4 py-2"><dt>Anfahrt Düsseldorf <span className="block text-xs text-muted-foreground">Umland nach Entfernung, wird vorher genannt</span></dt><dd className="font-extrabold text-primary">{prices.travel}</dd></div>
-        <div className="flex justify-between gap-4 py-2"><dt>Störungsdienst außerhalb der Bürozeiten</dt><dd className="font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
-        <div className="flex justify-between gap-4 py-2"><dt>Projekte (PV, Wallbox, Sanierung, Zählerschrank)</dt><dd className="text-right font-semibold text-primary">Festpreis-Angebot nach Vor-Ort-Termin</dd></div>
+         <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3"><dt>Stundensatz Elektroniker</dt><dd className="shrink-0 font-extrabold text-primary">{prices.hourly}</dd></div>
+         <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3"><dt>Anfahrt Düsseldorf <span className="block text-xs text-muted-foreground">Umland nach Entfernung, wird vorher genannt</span></dt><dd className="shrink-0 font-extrabold text-primary">{prices.travel}</dd></div>
+         <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3"><dt>Störungsdienst außerhalb der Bürozeiten</dt><dd className="shrink-0 font-extrabold text-primary">{prices.emergency} Zuschlag</dd></div>
+         <div className="grid gap-2 py-3 sm:grid-cols-[minmax(0,1fr)_auto]"><dt>Projekte (PV, Wallbox, Sanierung, Zählerschrank)</dt><dd className="max-w-xs font-semibold text-primary sm:text-right">Festpreis-Angebot nach Vor-Ort-Termin</dd></div>
       </dl>
       <p className="mt-3 text-xs text-muted-foreground">Alle Preise für Privatkunden inkl. 19 % MwSt. (Photovoltaik: 0 % MwSt.). Gewerbekunden erhalten Nettopreise im Angebot. Stand {standDate}.</p>
     </div>
