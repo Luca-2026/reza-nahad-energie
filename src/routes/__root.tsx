@@ -101,7 +101,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         sameAs: [googleProfileHref],
         hasMap: mapsHref,
         knowsAbout: services.map((s) => s.name),
-        memberOf: { "@type": "Organization", name: "Elektro-Innung Düsseldorf" },
       }),
     ],
   }),
