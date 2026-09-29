@@ -1,6 +1,5 @@
 export const phoneDisplay = "0211 54268296";
 export const phoneHref = "tel:+4921154268296";
-export const whatsappHref = "https://wa.me/4921154268296?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20";
 export const email = "info@nahad-energie.de";
 export const brand = "Nahad Energie Elektrotechnik";
 export const mapsHref = "https://www.google.com/maps/dir/?api=1&destination=Vogelsanger+Weg+38,+40470+D%C3%BCsseldorf";
@@ -37,7 +36,7 @@ export const areaServed = ["Düsseldorf", "Ratingen", "Neuss", "Meerbusch", "Erk
 
 /** Gemeinsame Texte (Teil D.1) */
 export const generalSteps: [string, string][] = [
-  ["Anfrage", "Formular, Telefon oder WhatsApp (gern mit Foto). Wir melden uns in der Regel innerhalb eines Werktags."],
+  ["Anfrage", "Formular, Telefon oder E-Mail (gern mit Foto). Wir melden uns in der Regel innerhalb eines Werktags."],
   ["Vor-Ort-Termin", "Bei Projekten wie PV, Wallbox oder Sanierung schauen wir uns Zählerschrank, Leitungswege und Gegebenheiten an."],
   ["Festpreis-Angebot", "Schriftlich, mit Leistungsbeschreibung, Material und Terminvorschlag. Bei Verbraucherverträgen inklusive Widerrufsbelehrung – das gehört sich so."],
   ["Ausführung & Übergabe", "Termin, Ausführung, Prüfung, Protokoll, Einweisung. Anmeldungen beim Netzbetreiber übernehmen wir."],
