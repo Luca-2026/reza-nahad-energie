@@ -13,3 +13,4 @@
 - [x] Mobile Startseite mit scrollabhängiger Kontaktleiste, kompakter Störungsmeldung und neuer Bildverteilung optimieren
 - [x] Mobile Startseiten-Navigation, Desktop-Bündigkeit, CI-Orange und dezente Seitenanimationen vervollständigen
 - [x] Knalliges Orange durch sparsam eingesetztes Messinggold ersetzen und große Akzentflächen beruhigen
+- [x] Menü- und Überschriftenumbrüche auf allen Seiten für Mobil- und Desktopbreiten vereinheitlichen
