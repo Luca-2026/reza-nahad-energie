@@ -2,13 +2,18 @@
 /**
  * Kontaktformular-Endpunkt für STRATO (PHP 8).
  * GET  -> liefert ein zeitgebundenes Token
- * POST -> prüft Eingaben, Honeypot, Token, Rate-Limit und versendet eine E-Mail.
+ * POST -> prüft Eingaben, Honeypot, Token, Rate-Limit und versendet E-Mails über Resend.
  */
 declare(strict_types=1);
 
 // ---- Konfiguration --------------------------------------------------------
 const MAIL_TO      = 'info@nahad-energie.de';
-const MAIL_FROM    = 'website@nahad-energie.de'; // muss bei STRATO als Absender existieren
+const MAIL_FROM    = 'website@nahad-energie.de'; // Absender, Domain muss bei Resend bestätigt sein
+const MAIL_FROM_NAME = 'Nahad Energie Elektrotechnik';
+const PHONE_DISPLAY  = '0211 54268296';
+// Resend-API-Key steht NICHT hier, sondern in api/config.php:
+//   <?php const RESEND_API_KEY = 're_...';
+if (is_file(__DIR__ . '/config.php')) require __DIR__ . '/config.php';
 // Bitte beim ersten Upload durch eine lange Zufallszeichenfolge ersetzen:
 const TOKEN_SECRET = 'BITTE-AENDERN-lange-zufaellige-zeichenfolge';
 const TOKEN_MIN_AGE = 3;      // Sekunden – schneller ausgefüllt = Bot
@@ -102,15 +107,49 @@ $body = "Neue Anfrage über das Kontaktformular\n\n"
       . "Nachricht:\n$message\n\n"
       . "--\nGesendet am " . date('d.m.Y H:i') . " Uhr\n";
 
-$headers = [
-    'From: Nahad Energie Website <' . MAIL_FROM . '>',
-    'Reply-To: ' . $email,
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'Content-Transfer-Encoding: 8bit',
-];
-$encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-$sent = mail(MAIL_TO, $encodedSubject, $body, implode("\r\n", $headers), '-f' . MAIL_FROM);
+function resend_send(array $payload): bool {
+    if (!defined('RESEND_API_KEY') || RESEND_API_KEY === '') return false;
+    $ch = curl_init('https://api.resend.com/emails');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 15,
+        CURLOPT_HTTPHEADER => ['Authorization: Bearer ' . RESEND_API_KEY, 'Content-Type: application/json'],
+        CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE),
+    ]);
+    $res = curl_exec($ch);
+    $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($code < 200 || $code >= 300) { error_log('Resend-Fehler [' . $code . ']: ' . (string)$res); return false; }
+    return true;
+}
+
+$from = MAIL_FROM_NAME . ' <' . MAIL_FROM . '>';
+$sent = resend_send([
+    'from' => $from,
+    'to' => [MAIL_TO],
+    'reply_to' => $email,
+    'subject' => $subject,
+    'text' => $body,
+]);
+
+// Eingangsbestätigung an den Kunden (Fehler hier blockieren die Anfrage nicht)
+if ($sent) {
+    $confirm = "Guten Tag $name,\n\n"
+        . "vielen Dank für Ihre Anfrage zum Thema „{$service}“. Sie ist bei uns eingegangen.\n\n"
+        . "So geht es weiter: Wir melden uns während unserer Bürozeiten (Montag–Freitag, 08:00–17:00 Uhr) telefonisch oder per E-Mail bei Ihnen.\n"
+        . "Wenn es dringend ist, rufen Sie uns gern direkt an: " . PHONE_DISPLAY . "\n\n"
+        . "Ihre Nachricht:\n$message\n\n"
+        . "Mit freundlichen Grüßen\nReza Nahad\nNahad Energie Elektrotechnik\nVogelsanger Weg 38, 40470 Düsseldorf\n"
+        . "Telefon " . PHONE_DISPLAY . " · " . MAIL_TO . "\nhttps://nahad-energie.de\n";
+    resend_send([
+        'from' => $from,
+        'to' => [$email],
+        'reply_to' => MAIL_TO,
+        'subject' => 'Ihre Anfrage bei Nahad Energie ist eingegangen',
+        'text' => $confirm,
+    ]);
+}
 
 if (!$sent) respond(500, ['ok' => false, 'error' => 'send_failed']);
 
