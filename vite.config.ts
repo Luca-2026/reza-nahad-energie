@@ -6,10 +6,25 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Every public page is rendered to static HTML at build time so the site can be
+// uploaded via FTP to Apache shared hosting (STRATO). Keep in sync with sitemap.xml.
+const serviceSlugs = [
+  "elektroinstallation", "zaehlerschrank-sicherungskasten", "photovoltaik", "wallbox",
+  "waermepumpe-elektroanschluss", "smart-home", "e-check", "dguv-v3-pruefung",
+  "beleuchtung-led", "netzwerk-tuersprechanlage", "gewerbe-hausverwaltung",
+];
+const staticPaths = [
+  "/", "/leistungen", ...serviceSlugs.map((s) => `/leistungen/${s}`),
+  "/notdienst", "/ueber-uns", "/referenzen", "/einsatzgebiet", "/karriere",
+  "/kontakt", "/faq", "/impressum", "/datenschutz", "/agb",
+];
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    pages: staticPaths.map((path) => ({ path })),
+    prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
 });
