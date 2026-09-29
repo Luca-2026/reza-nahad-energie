@@ -125,7 +125,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
          <div className="mx-auto grid h-18 max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 lg:flex lg:h-20 lg:px-6">
            <Link to="/" aria-label="Nahad Energie Elektrotechnik – Startseite" className="flex min-w-0 items-center gap-3 transition-opacity hover:opacity-85">
             <img src={logoAsset.url} alt="" width="52" height="52" className="size-13 shrink-0" />
-            <span className="hidden min-w-0 leading-tight sm:block"><span className="block whitespace-nowrap font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground lg:hidden xl:block">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
+            <span className="hidden min-w-0 leading-tight sm:block lg:hidden xl:block"><span className="block whitespace-nowrap font-display text-base font-extrabold tracking-tight text-primary">Nahad Energie</span><span className="block text-xs text-muted-foreground">Elektrotechnik-Meisterbetrieb Düsseldorf</span></span>
           </Link>
             <nav aria-label="Hauptnavigation" className="ml-auto hidden h-full shrink-0 items-center gap-4 lg:flex xl:gap-5">
              <Link to="/" className="nav-link" activeOptions={{ exact: true }} activeProps={{ className: "nav-link-active", "aria-current": "page" }}>Startseite</Link>
