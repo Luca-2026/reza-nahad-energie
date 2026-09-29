@@ -38,6 +38,11 @@ function Index() {
           <div className="min-w-0">
             <div className="mb-5 flex items-start gap-2 text-xs font-extrabold uppercase text-accent-strong sm:text-sm"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" /> Elektrotechnik-Meisterbetrieb · Düsseldorf-Mörsenbroich</div>
             <h1 className="max-w-3xl text-[2.25rem] font-extrabold leading-[1.08] text-primary sm:text-5xl lg:text-[3.5rem]">Elektriker in Düsseldorf – Ihr Meisterbetrieb für Elektroinstallation, Photovoltaik und Wallbox</h1>
+            <figure className="relative mt-7 w-full lg:hidden">
+              <div className="absolute -bottom-2 -left-2 top-2 w-1 bg-accent" aria-hidden="true" />
+              <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad an seinem Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" className="relative aspect-[4/3] w-full rounded-md object-cover object-center" fetchPriority="high" />
+              <figcaption className="relative mt-2 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister und Inhaber</figcaption>
+            </figure>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Von der defekten Steckdose bis zur PV-Anlage mit Speicher und Ladepunkt: Wir planen, installieren und melden beim Netzbetreiber an – persönlich geführt von Elektrotechnikermeister Reza Nahad, mit Preisen, die Sie vor dem Auftrag kennen.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button size="lg" asChild><Link to="/kontakt">Anfrage senden <ArrowRight className="size-5" aria-hidden="true" /></Link></Button>
@@ -50,7 +55,7 @@ function Index() {
               <li className="flex items-center gap-2"><Clock className="size-5 shrink-0 text-accent" aria-hidden="true" />Rückmeldung in der Regel innerhalb eines Werktags</li>
             </ul>
           </div>
-          <figure className="relative mx-auto w-full max-w-xl lg:max-w-none">
+          <figure className="relative mx-auto hidden w-full max-w-xl lg:block lg:max-w-none">
             <div className="absolute -bottom-3 -left-3 top-3 w-1 bg-accent" aria-hidden="true" />
             <img src={officeAsset.url} alt="Elektrotechnikermeister Reza Nahad an seinem Arbeitsplatz im Büro von Nahad Energie in Düsseldorf" width="1366" height="768" className="relative aspect-[4/3] max-h-[520px] w-full rounded-md object-cover object-center" fetchPriority="high" />
             <figcaption className="relative mt-3 text-xs font-semibold text-muted-foreground">Reza Nahad, Elektrotechnikermeister und Inhaber</figcaption>
