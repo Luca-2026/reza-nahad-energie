@@ -16,6 +16,9 @@ export const Route = createFileRoute("/impressum")({
       <LegalHeading>Steuerliche Angaben</LegalHeading>
       <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE458342898<br />Steuernummer: 122/5738/0424</p>
 
+      <LegalHeading>Betriebshaftpflichtversicherung</LegalHeading>
+      <p>Für den Betrieb besteht eine Betriebshaftpflichtversicherung.<br />Policen-Nummer: HFK1676</p>
+
       <LegalHeading>Berufsbezeichnung und berufsrechtliche Regelungen</LegalHeading>
       <p>Gesetzliche Berufsbezeichnung: Elektrotechnikermeister, verliehen in der Bundesrepublik Deutschland von der Handelskammer Düsseldorf.</p>
       <p>Zuständige Kammer: Handwerkskammer Düsseldorf, Georg-Schulhoff-Platz 1, 40221 Düsseldorf, <a href="https://www.hwk-duesseldorf.de">www.hwk-duesseldorf.de</a></p>
